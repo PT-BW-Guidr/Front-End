@@ -22,7 +22,7 @@ function App() {
         <Route path = '/contact'/>
         <Switch>
           {/* <PrivateRoute exact path = '/traillist'/> */}
-          <Route path = '/login'/>
+          <Route path = '/login'component = {Login}/>
           <Route path = '/register'/>
         </Switch>
       </div>
