@@ -7,6 +7,7 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
 import {guideReducer as reducer} from './Reducer/guideReducer';
+import Login from './Components/login';
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
@@ -15,10 +16,12 @@ function App() {
     <Provider store = {store}>
       <div className="App">
         <header/>
-        <Route exact path = '/'/>
+        <Route exact path = '/' component = {Login}/>
         <Route path = '/trails'/>
+        <Route path = '/about'/>
+        <Route path = '/contact'/>
         <Switch>
-          <PrivateRoute exact path = '/traillist'/>
+          {/* <PrivateRoute exact path = '/traillist'/> */}
           <Route path = '/login'/>
           <Route path = '/register'/>
         </Switch>
