@@ -1,14 +1,35 @@
 import { GET_LOGIN, GET_CRED } from "./Actions"
+import uuid from 'uuid';
 
 export const intialState = {
     trailList: [],
     isFetchingData: true,
     isFetchingLogin: false,
+    isSendingLogin: false,
     user: {
+        id: uuid(),
         username:"",
         password:""
     },
-    token: ""
+    token: "",
+    trip:{
+        title:"",
+        description: "",
+        isPrivate: true,
+        isProfessional: false,
+        duration: 0.00,
+        distance: 0.00,
+        date: Date.now(),
+        tripType: ""
+    },
+    profile:{
+        title: "",
+        tagline:"",
+        guideSpecialty:"",
+        age: Number,
+        yearsExperience: Number
+    }
+
 }
 
 export const guideReducer = (state = intialState, action) =>{
