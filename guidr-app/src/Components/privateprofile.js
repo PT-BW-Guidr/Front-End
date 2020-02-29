@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
 
-const PublicProfile = props => {
+const PrivateProfile = () => {
 
   
   return (
     <div>
-      {props.member.map(person => (
+        your profile here.
+      {/* {member.map(person => (
         <div  key={person.id}>
             <h1>Title:{person.title}</h1>
           <h2>Tagline:{person.tagline}</h2>
@@ -14,9 +15,9 @@ const PublicProfile = props => {
       <p>age:{person.age}</p>
       <p>Years experience:{person.yearsExperience}</p>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };
 
-export default PublicProfile;
+export default PrivateProfile;

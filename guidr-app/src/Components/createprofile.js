@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 
 
-function Profile (props) {
+function CreateProfile (props) {
 
     const [newMember, setNewMember] = useState({
         title: "", 
@@ -77,10 +77,10 @@ function Profile (props) {
            onChange={handleChanges}
         />
 
-        <button type="submit">Add Member</button>
+        <button type="submit">Create Profile</button>
       </form>
     );
     
   }
 
-  export default Profile;
+  export default CreateProfile;

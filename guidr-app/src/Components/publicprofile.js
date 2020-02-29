@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Profile from './profile';
-import GuideProfile from "./guideprofile"
+import CreateProfile from './createprofile';
+import PublicProfile from "./guideprofile";
 
 
 function ProfilePage() {
@@ -33,8 +33,8 @@ console.log(member);
   return (
     <div >
 
-    <Profile addNewMember={addNewMember}/>
-    <GuideProfile member={member}/>
+    <CreateProfile addNewMember={addNewMember}/>
+    <PublicProfile member={member}/>
           
     </div>
   );
