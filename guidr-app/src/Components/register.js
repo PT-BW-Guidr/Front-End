@@ -3,12 +3,10 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {getLogin, getCred} from '../Reducer/Actions'
 import { intialState } from '../Reducer/guideReducer';
-import { Link } from 'react-router-dom';
 
+const Register = props =>{
 
-const Login = props =>{
-
-    const [user, setUser] = useState(intialState.user)
+    const [user, setUser] = useState(intialState)
 
     const handleChange = e => {
         e.preventDefault();
@@ -22,15 +20,15 @@ const Login = props =>{
 
     const onsSubmit = e =>{
         e.preventDefault();
-        props.getLogin(props.user);
+        props.createUser(props.user);
         props.history.push('/protected');
-        setUser(intialState.user)
+        setUser(intialState);
     }
 
 
     return(
-        <div  className = 'Login'>
-            <h1>Sign In Here!</h1>
+        <div  className = 'Register'>
+            <h1>Sign Up Here!</h1>
             <form onSubmit={onsSubmit}>
                 <input
                 type = 'text'
@@ -42,9 +40,8 @@ const Login = props =>{
                 name = 'password'
                 onChange ={handleChange}
                 />
-                <button type ="submit" >Login</button>
+                <button type = "submit" >Sign up</button>
             </form>
-            <Link to = "/register">No Account? Sign Up Here!</Link>
         </div>
     )
 }
@@ -57,4 +54,4 @@ const mapStateToProps = state =>{
 export default connect(
     mapStateToProps,
     {getLogin, getCred}
-) (Login);
+) (Register);

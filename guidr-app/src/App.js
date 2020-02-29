@@ -7,6 +7,9 @@ import thunk from 'redux-thunk';
 import ProfilePage from './Components/profile'
 
 import {guideReducer as reducer} from './Reducer/guideReducer';
+import Login from './Components/login';
+import PrivateRoute from './Components/PrivateRoute';
+import register from './Components/register';
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
@@ -18,12 +21,14 @@ function App() {
         <h1>guidr</h1>
         <ProfilePage/>
         <header/>
-        <Route exact path = '/'/>
-        <Route path = '/trips'/>
+        <Route exact path = '/' component = {Login}/>
+        <Route path = '/trails'/>
+        <Route path = '/about'/>
+        <Route path = '/contact'/>
         <Switch>
-           {/* <PrivateRoute exact path = '/triplist'/>  */}
-          <Route path = '/login'/>
-          <Route path = '/register'/>
+          <PrivateRoute exact path = '/traillist' />
+          <Route path = '/login'component = {Login}/>
+          <Route path = '/register' component ={register}/>
         </Switch>
       </div>
     </Provider>
