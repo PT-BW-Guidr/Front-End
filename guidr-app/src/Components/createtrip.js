@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -10,15 +10,29 @@ flex-flow: column wrap;
 justify-content: center;
 margin: 1% 35%;
 `
-const CreateTrip = (props) => {
+const CreateTrip = () => {
 
     const [newTrip, setNewTrip] = useState({
         trip_title: "",
         description:"",
         duration:"",
-        distance:"", 
+        distance:"",
+        trip_type:"", 
     
     });
+
+    useEffect(() => {
+      
+      
+      axios
+         .post('https://guidr1.herokuapp.com/api/trips/')
+        .then(response => {
+          console.log(response);
+        
+        })
+        .catch(error => console.log(error));
+    }, [newTrip]);
+
 
       const handleChanges = event => {
        
@@ -28,10 +42,9 @@ const CreateTrip = (props) => {
 
 
     const submitForm = event => {
-        console.log('submitting');
         event.preventDefault(); 
-        props.addNewTrip(newTrip);
-        setNewTrip({ title: ""}); 
+        setNewTrip(newTrip);
+        setNewTrip({ trip_title: "", description:'', duration:'',distance:'',trip_type:''}); 
       };
 
   return (
@@ -45,7 +58,7 @@ const CreateTrip = (props) => {
         placeholder="trip title"
         id="trip_title"
         name="trip_title"
-        value={newTrip.triptitle}
+        value={newTrip.trip_title}
         onChange={handleChanges}
       />
 

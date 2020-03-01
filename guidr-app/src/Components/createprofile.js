@@ -11,7 +11,7 @@ align-content:space evenly;
 margin: 2% 35%;
 `
 
-function CreateProfile (props) {
+function CreateProfile () {
 
     const [newMember, setNewMember] = useState({
         profile_title: "", 
@@ -33,7 +33,7 @@ function CreateProfile (props) {
             setNewMember(response.results);
         })
         .catch(error => console.log(error));
-    }, []);
+    }, [newMember]);
 
 
 
@@ -46,7 +46,7 @@ function CreateProfile (props) {
       const submitForm = event => {
         console.log('submitting');
         event.preventDefault(); 
-        props.addNewMember(newMember);
+        setNewMember(newMember);
         setNewMember({ profile_title: "", tagline: "" , guide_specialty:"", age:"", years_experience:"" }); 
       };
     
