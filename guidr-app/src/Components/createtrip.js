@@ -8,7 +8,7 @@ const Flex= styled.div`
 display: flex;
 flex-flow: column wrap;
 justify-content: center;
-margin: 1% 40%;
+margin: 1% 35%;
 `
 const CreateTrip = (props) => {
 

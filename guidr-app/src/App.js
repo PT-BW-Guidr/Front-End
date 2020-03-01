@@ -4,22 +4,30 @@ import {Route, Switch, Link} from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import {guideReducer as reducer} from './Reducer/guideReducer';
+import styled from "styled-components";
+
 import PublicProfilePage from './Components/publicprofilepage';
 import PrivateProfile from './Components/privateprofile';
 import CreateProfile from './Components/createprofile';
 import CreateTrip from './Components/createtrip'
-
- import {guideReducer as reducer} from './Reducer/guideReducer';
 import Login from './Components/login';
 import PrivateRoute from './Components/PrivateRoute';
 import register from './Components/register';
 
+const Nav =styled.div`
+background: lightblue;
+padding:10px;
+`
+
 // const store = createStore(reducer, applyMiddleware(thunk));
+
+   // <Provider store = {store}>
 
 function App() {
   return (
-    
     <div>
+    <Nav>
 
 <h1>guidr</h1>
       <nav>
@@ -29,16 +37,19 @@ function App() {
         <Link to='/'>Log in</Link>
         <Link to='/createprofile'>Create Profile</Link>
         <Link to='/createtrip'>Create Trip</Link>
+        
       </nav>
+      </Nav>
       <Route  path = '/publicprofilepage' component = {PublicProfilePage}/>
       <Route  path = '/privateprofile' component = {PrivateProfile}/>
       <Route  path = '/createprofile' component = {CreateProfile}/>
       <Route  path = '/createtrip' component = {CreateTrip}/>
-    </div>
+      <Route path = '/register' component ={register}/>
+      <Route path = '/login'component = {Login}/>
+      </div>
 
-    // <Provider store = {store}>
+ 
     //   <div className="App">
-    //     <h1>guidr</h1>
         
     //     <header/>
         

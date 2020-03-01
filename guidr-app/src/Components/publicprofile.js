@@ -51,7 +51,7 @@ const PublicProfile = props => {
       
         <ProfileCard>
           <div>
-          <Title>{props.title}</Title>
+          <Title>{props.profile_title}</Title>
           <Info>tagline:{props.tagline}</Info>
           <Info>Specialty:{props.guide_specialty}</Info>
           <Info>age:{props.age}</Info>

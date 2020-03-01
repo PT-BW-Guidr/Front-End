@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
+import axios from "axios";
 //form to create profile
 
 const Flex= styled.div`
 display: flex;
 flex-flow: column wrap;
 justify-content: center;
-margin: 5% 40%;
+align-content:space evenly;
+margin: 2% 35%;
 `
 
 function CreateProfile (props) {
@@ -19,6 +21,21 @@ function CreateProfile (props) {
         yearsExperience:"",
         trip_type:"", 
     });
+
+    useEffect(() => {
+      
+      
+      axios
+         .post('https://guidr1.herokuapp.com/api/profiles/')
+        .then(response => {
+          console.log(response);
+        
+            setNewMember(response.results);
+        })
+        .catch(error => console.log(error));
+    }, []);
+
+
 
       const handleChanges = event => {
        
@@ -43,12 +60,12 @@ function CreateProfile (props) {
         <form onSubmit={submitForm}>
       <Flex>
         
-        <label htmlFor="title">Title</label>
+        <label htmlFor="profile_title">Title</label>
         <input
           type="text"
           placeholder="Title"
-          id="title"
-          name="title"
+          id="profile_title"
+          name="profile_title"
           value={newMember.profile_title}
            onChange={handleChanges}
         />
@@ -63,10 +80,10 @@ function CreateProfile (props) {
            onChange={handleChanges}
         />
 
-<       label htmlFor="guideSpecialty">Guide Specialty</label>
+<       label htmlFor="guide_specialty">Guide Specialty</label>
         <input
-          id="guideSpecialty"
-          name="guideSpecialty"
+          id="guide_specialty"
+          name="guide_specialty"
           placeholder="Guide Specialty"
           value={newMember.guide_specialty}
            onChange={handleChanges}

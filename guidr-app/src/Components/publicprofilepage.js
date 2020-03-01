@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
-import CreateProfile from './createprofile';
 import PublicProfile from "./publicprofile";
 import styled from "styled-components";
 
@@ -34,11 +33,11 @@ const PublicProfilePage = () => {
       
       
         axios
-           .get('https://guidr1.herokuapp.com/api/profiles/')
+           .get('https://guidr1.herokuapp.com/api/profiles/public/')
           .then(response => {
             console.log(response);
           
-            //   setMember(response.data.results);
+               setMember(response.results);
           })
           .catch(error => console.log(error));
       }, []);
@@ -53,7 +52,7 @@ const PublicProfilePage = () => {
       {memberData.map(item => {
           return <PublicProfile
           key={item.id} 
-          title = {item.profile_title}
+          profile_title = {item.profile_title}
           tagline= {item.tagline}
           guide_specialty= {item.guide_specialty}
           age= {item.age}
