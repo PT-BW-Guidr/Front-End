@@ -1,15 +1,23 @@
 import React, {useState} from 'react';
+import styled from "styled-components";
+//form to create profile
 
-
+const Flex= styled.div`
+display: flex;
+flex-flow: column wrap;
+justify-content: center;
+margin: 5% 40%;
+`
 
 function CreateProfile (props) {
 
     const [newMember, setNewMember] = useState({
-        title: "", 
+        profile_title: "", 
         tagline: "",
-        guideSpecialty:"",
+        guide_specialty:"",
         age:"",
-        yearsExperience:"" 
+        yearsExperience:"",
+        trip_type:"", 
     });
 
       const handleChanges = event => {
@@ -22,30 +30,35 @@ function CreateProfile (props) {
         console.log('submitting');
         event.preventDefault(); 
         props.addNewMember(newMember);
-        setNewMember({ title: "", tagline: "" , guideSpecialty:"", age:"", yearsExperience:"" }); 
+        setNewMember({ profile_title: "", tagline: "" , guide_specialty:"", age:"", years_experience:"" }); 
       };
     
 
 
 
     return (
+
+      <div>
+        <h1>Enter Profile info to get started!</h1>
         <form onSubmit={submitForm}>
-      
+      <Flex>
+        
         <label htmlFor="title">Title</label>
         <input
           type="text"
-          placeholder="title"
+          placeholder="Title"
           id="title"
           name="title"
-          value={newMember.title}
+          value={newMember.profile_title}
            onChange={handleChanges}
         />
        
-        <label htmlFor="tagline">tagline</label>
+      
+        <label htmlFor="tagline">Tagline</label>
         <input
           id="tagline"
           name="tagline"
-          placeholder="tagline"
+          placeholder="Tagline"
           value={newMember.tagline}
            onChange={handleChanges}
         />
@@ -54,8 +67,8 @@ function CreateProfile (props) {
         <input
           id="guideSpecialty"
           name="guideSpecialty"
-          placeholder="guideSpecialty"
-          value={newMember.guideSpecialty}
+          placeholder="Guide Specialty"
+          value={newMember.guide_specialty}
            onChange={handleChanges}
         />
 
@@ -63,7 +76,7 @@ function CreateProfile (props) {
         <input
           id="age"
           name="age"
-          placeholder="age"
+          placeholder="Age"
           value={newMember.age}
            onChange={handleChanges}
         />
@@ -72,13 +85,17 @@ function CreateProfile (props) {
         <input
           id="yearsExperience"
           name="yearsExperience"
-          placeholder="yearsExperience"
-          value={newMember.yearsExperience}
+          placeholder="Years Experience"
+          value={newMember.years_experience}
            onChange={handleChanges}
         />
 
+
+
         <button type="submit">Create Profile</button>
+        </Flex>
       </form>
+      </div>
     );
     
   }

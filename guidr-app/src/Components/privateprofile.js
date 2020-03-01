@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+
+// should display private profile to edit
 const PrivateProfile = () => {
 
   

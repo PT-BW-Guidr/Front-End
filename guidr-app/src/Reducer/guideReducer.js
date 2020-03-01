@@ -1,5 +1,5 @@
 import { GET_LOGIN, GET_CRED } from "./Actions"
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 export const intialState = {
     trailList: [],
@@ -7,7 +7,7 @@ export const intialState = {
     isFetchingLogin: false,
     isSendingLogin: false,
     user: {
-        id: uuid(),
+        // id: uuid(),
         username:"",
         password:""
     },

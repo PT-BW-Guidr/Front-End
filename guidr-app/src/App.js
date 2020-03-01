@@ -4,10 +4,12 @@ import {Route, Switch, Link} from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import PublicProfile from './Components/publicprofile'
-import PrivateProfile from './Components/privateprofile'
+import PublicProfilePage from './Components/publicprofilepage';
+import PrivateProfile from './Components/privateprofile';
+import CreateProfile from './Components/createprofile';
+import CreateTrip from './Components/createtrip'
 
-import {guideReducer as reducer} from './Reducer/guideReducer';
+ import {guideReducer as reducer} from './Reducer/guideReducer';
 import Login from './Components/login';
 import PrivateRoute from './Components/PrivateRoute';
 import register from './Components/register';
@@ -18,14 +20,20 @@ function App() {
   return (
     
     <div>
+
+<h1>guidr</h1>
       <nav>
         <Link to='/privateprofile'>Home</Link>
-        <Link to='/publicprofile'>View members!</Link>
+        <Link to='/publicprofilepage'>View members!</Link>
         <Link to='/register'>Sign Up!</Link>
-        <Link to='/login'>Log in</Link>
+        <Link to='/'>Log in</Link>
+        <Link to='/createprofile'>Create Profile</Link>
+        <Link to='/createtrip'>Create Trip</Link>
       </nav>
-      <Route exact path = '/publicprofile' component = {PublicProfile}/>
-      <Route exact path = '/privateprofile' component = {PrivateProfile}/>
+      <Route  path = '/publicprofilepage' component = {PublicProfilePage}/>
+      <Route  path = '/privateprofile' component = {PrivateProfile}/>
+      <Route  path = '/createprofile' component = {CreateProfile}/>
+      <Route  path = '/createtrip' component = {CreateTrip}/>
     </div>
 
     // <Provider store = {store}>
