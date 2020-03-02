@@ -1,5 +1,7 @@
 import { GET_LOGIN, GET_CRED } from "./Actions"
-// import uuid from 'uuid';
+import { v4 } from "uuid";
+
+
 
 export const intialState = {
     trailList: [],
@@ -7,9 +9,9 @@ export const intialState = {
     isFetchingLogin: false,
     isSendingLogin: false,
     user: {
-        // id: uuid(),
-        username:"",
-        password:""
+        id: v4(),
+        username:"AdventureMan",
+        password:"123456"
     },
     token: "",
     trip:{
@@ -23,9 +25,10 @@ export const intialState = {
         tripType: ""
     },
     profile:{
-        title: "",
-        tagline:"",
-        guideSpecialty:"",
+        id: 0,
+        title: "adventure-man",
+        tagline:"gonna send it",
+        guideSpecialty:"mushrooms",
         age: Number,
         yearsExperience: Number
     }

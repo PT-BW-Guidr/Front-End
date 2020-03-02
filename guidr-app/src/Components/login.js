@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+
 import {connect} from 'react-redux';
 import {getLogin, getCred} from '../Reducer/Actions'
 import { intialState } from '../Reducer/guideReducer';
