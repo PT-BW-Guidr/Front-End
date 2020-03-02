@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import axios from "axios";
+
 import PublicProfile from "./publicprofile";
 import styled from "styled-components";
+import { axiosWithAuth } from './Utilities/Utilities';
+import {connect} from 'react-redux';
 
 // should display all profiles
 
@@ -15,24 +17,16 @@ justify-content: space-evenly;
 margin: 5% 0;
 `
 
-const PublicProfilePage = () => {
+const PublicProfilePage = props => {
 
-    const [memberData, setMember] = useState([
-        {
-          id: Date.now(),
-          profile_title:"adventure man!",
-          tagline:"gonna send it!",
-          guide_specialty:"mushrooms!",
-          age:"over9000",
-          years_experience:"over9000"
-    
-        }
-      ]);
+    const [memberData, setMember] = useState([props.user]);
+
+    //props.user passes in the state object from guideReducer.js
 
   useEffect(() => {
       
-      
-        axios
+   //axiosWithAuth allows the .get to recieve data due to authorization needed   
+        axiosWithAuth()
            .get('https://guidr1.herokuapp.com/api/profiles/public/')
           .then(response => {
             console.log(response);
@@ -50,13 +44,14 @@ const PublicProfilePage = () => {
       <h1>Our wonderfull guides!</h1>
       <Flex>
       {memberData.map(item => {
+          
           return <PublicProfile
           key={item.id} 
-          profile_title = {item.profile_title}
+          profile_title = {item.title}
           tagline= {item.tagline}
-          guide_specialty= {item.guide_specialty}
+          guide_specialty= {item.guideSpecialty}
           age= {item.age}
-      years_experience= {item.years_experience}
+      years_experience= {item.yearsExperience}
           />;
         })}
         </Flex>
@@ -66,5 +61,15 @@ const PublicProfilePage = () => {
   );
 }
 
-export default PublicProfilePage;
+const mapStateToProps = state =>{
+  return {
+      user: state.profile
+  }
+}
+
+
+export default connect(
+  mapStateToProps,
+  {}
+) (PublicProfilePage);
 

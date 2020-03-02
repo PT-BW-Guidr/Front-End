@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+
 import {connect} from 'react-redux';
-import {getLogin, getCred} from '../Reducer/Actions'
+import {getLogin, getCred, createUser} from '../Reducer/Actions'
 import { intialState } from '../Reducer/guideReducer';
+import { Link } from 'react-router-dom';
 
 const Register = props =>{
 
-    const [user, setUser] = useState(intialState)
+    const [user, setUser] = useState(props.user)
 
     const handleChange = e => {
         e.preventDefault();
@@ -34,14 +35,17 @@ const Register = props =>{
                 type = 'text'
                 name = 'username'
                 onChange = {handleChange}
+                placeholder ={props.user.username}
                 />
                 <input
                 type = 'text'
                 name = 'password'
                 onChange ={handleChange}
+                placeholder = {props.user.password}
                 />
                 <button type = "submit" >Sign up</button>
             </form>
+            <Link to = "/login">Already a user? Sign in Here!</Link>
         </div>
     )
 }
@@ -53,5 +57,5 @@ const mapStateToProps = state =>{
 
 export default connect(
     mapStateToProps,
-    {getLogin, getCred}
+    {getLogin, getCred, createUser}
 ) (Register);
