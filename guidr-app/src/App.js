@@ -20,50 +20,39 @@ background: lightblue;
 padding:10px;
 `
 
-// const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk));
 
-   // <Provider store = {store}>
+
 
 function App() {
   return (
-    <div>
+    <Provider store = {store}>
+    <div className="App">
+    
     <Nav>
 
-<h1>guidr</h1>
+      <Link to='/'><h1>guidr</h1></Link>
       <nav>
         <Link to='/privateprofile'>Home</Link>
         <Link to='/publicprofilepage'>View members!</Link>
         <Link to='/register'>Sign Up!</Link>
-        <Link to='/'>Log in</Link>
+        <Link to='/login'>Log in</Link>
         <Link to='/createprofile'>Create Profile</Link>
-        <Link to='/createtrip'>Create Trip</Link>
-        
+        <Link to='/createtrip'>Create Trip</Link>        
       </nav>
-      </Nav>
-      <Route  path = '/publicprofilepage' component = {PublicProfilePage}/>
-      <Route  path = '/privateprofile' component = {PrivateProfile}/>
-      <Route  path = '/createprofile' component = {CreateProfile}/>
-      <Route  path = '/createtrip' component = {CreateTrip}/>
-      <Route path = '/register' component ={register}/>
-      <Route path = '/login'component = {Login}/>
-      </div>
-
- 
-    //   <div className="App">
-        
-    //     <header/>
-        
-    //     <Route exact path = '/' component = {Login}/>
-    //     <Route path = '/trips'/>
-    //     <Route path = '/about'/>
-    //     <Route path = '/contact'/>
-    //     <Switch>
-    //       <PrivateRoute exact path = '/triplist' />
-    //       <Route path = '/login'component = {Login}/>
-    //       <Route path = '/register' component ={register}/>
-    //     </Switch>
-    //   </div>
-    // </Provider>
+      </Nav> 
+         <Route exact path = '/'/>
+         <Route  path = '/publicprofilepage' component = {PublicProfilePage}/>
+         <Route  path = '/privateprofile' component = {PrivateProfile}/>
+         <Route  path = '/createprofile' component = {CreateProfile}/>
+         <Route  path = '/createtrip' component = {CreateTrip}/>
+         <Switch>
+           <PrivateRoute exact path = '/triplist' />
+           <Route path = '/login'component = {Login}/>
+          <Route path = '/register' component ={register}/>
+        </Switch>
+       </div>
+     </Provider>
   );
 }
 

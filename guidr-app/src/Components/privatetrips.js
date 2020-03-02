@@ -1,27 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import { Link} from 'react-router-dom';
-import axios from "axios";
+
 import PrivateTrip from './privatetrip'
+import { axiosWithAuth } from './Utilities/Utilities';
 
 
 
 
  const PrivateTrips = ()=>{
 
-    const [Trips, setTrip] = useState({
-        trip_title: "",
-        description:"",
-        duration:"",
-        distance:"",
-        trip_type:"" 
-
-    
-    });
+    const [Trips, setTrip] = useState(props.user);
 
     
     useEffect(() => {
       
-        axios
+        axiosWithAuth()
            .get('https://guidr1.herokuapp.com/api/trips/')
           .then(response => {
             console.log(response);
@@ -53,4 +46,15 @@ import PrivateTrip from './privatetrip'
 )
 
 }
-export default PrivateTrips;
+
+const mapStateToProps = state =>{
+  return {
+      user: state.profile
+  }
+}
+
+
+export default connect(
+  mapStateToProps,
+  {}
+) (PrivateTrips);
