@@ -49,7 +49,7 @@ const CreateTrip = () => {
 
   return (
   <div>
-    <h1>your trip here</h1>
+    <h2>your trip here</h2>
     <form onSubmit={submitForm}>
         <Flex>
 <label htmlFor="trip_title">Trip Title</label>

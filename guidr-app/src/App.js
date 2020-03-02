@@ -16,13 +16,10 @@ import PrivateRoute from './Components/PrivateRoute';
 import register from './Components/register';
 
 const Nav =styled.div`
-background: lightblue;
 padding:10px;
+background:linear-gradient(to top, #592500, #BC2900, #BA6D09, #71A8EE, #3072EB, #1552C6, #0542A3);
 `
 
-// const store = createStore(reducer, applyMiddleware(thunk));
-
-   // <Provider store = {store}>
 
 function App() {
   return (
@@ -31,23 +28,26 @@ function App() {
 
 <h1>guidr</h1>
       <nav>
-        <Link to='/privateprofile'>Home</Link>
+        <Link to='/'>Home</Link>
         <Link to='/publicprofilepage'>View members!</Link>
         <Link to='/register'>Sign Up!</Link>
-        <Link to='/'>Log in</Link>
+        <Link to='/login'>Log in</Link>
         <Link to='/createprofile'>Create Profile</Link>
         <Link to='/createtrip'>Create Trip</Link>
         
       </nav>
       </Nav>
       <Route  path = '/publicprofilepage' component = {PublicProfilePage}/>
-      <Route  path = '/privateprofile' component = {PrivateProfile}/>
+      <Route  exact path = '/' component = {PrivateProfile}/>
       <Route  path = '/createprofile' component = {CreateProfile}/>
       <Route  path = '/createtrip' component = {CreateTrip}/>
       <Route path = '/register' component ={register}/>
       <Route path = '/login'component = {Login}/>
       </div>
 
+// const store = createStore(reducer, applyMiddleware(thunk));
+
+   // <Provider store = {store}>
  
     //   <div className="App">
         

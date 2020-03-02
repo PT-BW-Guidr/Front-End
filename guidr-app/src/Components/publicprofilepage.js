@@ -47,7 +47,7 @@ const PublicProfilePage = () => {
   return (
     
     <div>
-      <h1>Our wonderfull guides!</h1>
+      <h2>Our wonderfull guides!</h2>
       <Flex>
       {memberData.map(item => {
           return <PublicProfile

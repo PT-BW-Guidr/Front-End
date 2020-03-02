@@ -8,7 +8,7 @@ display: flex;
 flex-flow: column wrap;
 justify-content: center;
 align-content:space evenly;
-margin: 2% 35%;
+margin: 0 35%;
 `
 
 function CreateProfile () {
@@ -56,7 +56,7 @@ function CreateProfile () {
     return (
 
       <div>
-        <h1>Enter Profile info to get started!</h1>
+        <h2>Enter Profile info to get started!</h2>
         <form onSubmit={submitForm}>
       <Flex>
         

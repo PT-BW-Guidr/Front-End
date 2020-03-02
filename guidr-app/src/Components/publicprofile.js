@@ -18,7 +18,7 @@ const ProfileCard = styled.div`
 `
 
 const Title = styled.h2`
-text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+text-shadow: 1px 1px 2px lightblue, 0 0 1em blue, 0 0 0.2em blue;
 
 `
 const Info = styled.h4`
