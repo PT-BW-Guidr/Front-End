@@ -1,5 +1,5 @@
 import { axiosWithAuth } from '../../Components/Utilities/Utilities';
-
+import axios from 'axios';
 export const GET_LOGIN = "GET_LOGIN";
 export const GET_CRED = "GET_CRED";
 export const CREATE_USER = "CREATE_USER";
@@ -24,10 +24,11 @@ export const getCred = (credentials) => dispatch =>{
 }
 
 export const createUser = (credentials) => dispatch =>{
-    dispatch({type: CREATE_USER});
-    axiosWithAuth()
+    
+    axios
         .post(`https://guidr1.herokuapp.com/api/auth/register`, credentials)
         .then(res =>{
+            dispatch({type: CREATE_USER, payload: res.data.token});
             localStorage.setItem('token', res.data.token);
             console.log(localStorage);
         })

@@ -1,4 +1,4 @@
-import { GET_LOGIN, GET_CRED } from "./Actions"
+import { GET_LOGIN, GET_CRED, CREATE_USER } from "./Actions"
 import { v4 } from "uuid";
 
 
@@ -47,6 +47,11 @@ export const guideReducer = (state = intialState, action) =>{
                 ...state,
                 user: action.payload
             };
+        case CREATE_USER:
+            return{
+                ...state,
+                token: action.payload
+            }
         default:
             return state;
     }
