@@ -15,6 +15,7 @@ import Login from './Components/login';
 import PrivateRoute from './Components/PrivateRoute';
 import register from './Components/register';
 
+
 const Nav =styled.div`
 background: lightblue;
 padding:10px;
@@ -31,7 +32,7 @@ function App() {
     
     <Nav>
 
-      <Link to='/'><h1>guidr</h1></Link>
+      <Link to='/home'><h1>guidr</h1></Link>
       <nav>
         <Link to='/privateprofile'>Home</Link>
         <Link to='/publicprofilepage'>View members!</Link>
@@ -42,12 +43,14 @@ function App() {
       </nav>
       </Nav> 
          <Route exact path = '/'/>
+         <Route path = '/home'/>
+         <Route path = '/edits' component = {CreateProfile}/>
          <Route  path = '/publicprofilepage' component = {PublicProfilePage}/>
          <Route  path = '/privateprofile' component = {PrivateProfile}/>
          <Route  path = '/createprofile' component = {CreateProfile}/>
          <Route  path = '/createtrip' component = {CreateTrip}/>
          <Switch>
-           <PrivateRoute exact path = '/triplist' />
+           <PrivateRoute exact path = '/'  component = {PrivateProfile} />
            <Route path = '/login'component = {Login}/>
           <Route path = '/register' component ={register}/>
         </Switch>

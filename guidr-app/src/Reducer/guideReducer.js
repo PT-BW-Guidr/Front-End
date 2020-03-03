@@ -1,5 +1,5 @@
 import { GET_LOGIN, GET_CRED, CREATE_USER } from "./Actions"
-import { v4 } from "uuid";
+
 
 
 
@@ -9,11 +9,11 @@ export const intialState = {
     isFetchingLogin: false,
     isSendingLogin: false,
     user: {
-        id: v4(),
+        id: 0,
         username:"AdventureMan",
         password:"123456"
     },
-    token: "",
+    token: {},
     trip:{
         title:"",
         description: "",
@@ -24,14 +24,14 @@ export const intialState = {
         date: Date.now(),
         tripType: ""
     },
-    profile:{
+    profile:[{
         id: 0,
         title: "adventure-man",
         tagline:"gonna send it",
         guideSpecialty:"mushrooms",
-        age: Number,
-        yearsExperience: Number
-    }
+        age: 9000,
+        yearsExperience: 9000
+    }]
 
 }
 

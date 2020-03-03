@@ -11,14 +11,14 @@ const Register = props =>{
 
     const handleChange = e => {
         e.preventDefault();
+        
         setUser({
             ...user,[e.target.name]: e.target.value
         })
-        console.log('user credentials', user);
         props.getCred(user);
-
+        
     }
-
+    console.log('user credentials', user);
     const onsSubmit = e =>{
         e.preventDefault();
         props.createUser(props.user);
