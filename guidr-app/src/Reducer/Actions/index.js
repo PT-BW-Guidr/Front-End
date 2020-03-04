@@ -1,4 +1,7 @@
-import { axiosWithAuth } from '../../Components/Utilities/Utilities';
+
+import axios from 'axios';
+
+var jwt_decode = require('jwt-decode');
 
 export const GET_LOGIN = "GET_LOGIN";
 export const GET_CRED = "GET_CRED";
@@ -6,11 +9,14 @@ export const CREATE_USER = "CREATE_USER";
 
 export const getLogin = (credentials) => dispatch =>{
     dispatch({type: GET_LOGIN});
-    axiosWithAuth()
-        .post(`https://guidr1.herokuapp.com/api/auth/login`,credentials)
+    axios
+        .post(`https://guidr1.herokuapp.com/api/auth/login`, {username: credentials.username, password: credentials.password})
         .then(res =>{
             console.log(res);
-            localStorage.setItem('token', res.data.payload)
+            let token = jwt_decode(res.data.token);
+            dispatch({type: CREATE_USER, payload: token});
+            console.log(token);
+            localStorage.setItem('token', token)
             
         })
         .catch(err => console.log('your username or password are inccorect'))
@@ -24,11 +30,14 @@ export const getCred = (credentials) => dispatch =>{
 }
 
 export const createUser = (credentials) => dispatch =>{
-    dispatch({type: CREATE_USER});
-    axiosWithAuth()
-        .post(`https://guidr1.herokuapp.com/api/auth/register`, credentials)
-        .then(res =>{
-            localStorage.setItem('token', res.data.token);
-            console.log(localStorage);
+    
+    axios
+        .post('https://guidr1.herokuapp.com/api/auth/register', {username: credentials.username, password: credentials.password})
+        .then(res =>{            
+            console.log(res);
+            let token = jwt_decode(res.data.token);
+            dispatch({type: CREATE_USER, payload: token});
+            console.log(token);
+            localStorage.setItem('token', token)
         })
 }
