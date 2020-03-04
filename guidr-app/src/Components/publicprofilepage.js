@@ -1,12 +1,28 @@
 import React, {useState, useEffect} from 'react';
-
-import PublicProfile from "./publicprofile";
 import styled from "styled-components";
 import { axiosWithAuth } from './Utilities/Utilities';
 import {connect} from 'react-redux';
 
-// should display all profiles
 
+const ProfileCard = styled.div`
+  
+  width:30%;
+  height: 300px;
+  background: white;
+  border-radius: 30px;
+  border: 4px ridge darkblue;
+  margin-bottom: 20px;
+  justify-content:center;
+`
+
+const Title = styled.h2`
+text-shadow: 1px 1px 2px lightblue, 0 0 1em blue, 0 0 0.2em blue;
+
+`
+const Info = styled.h4`
+margin-bottom:10px;
+
+`
 
 
 
@@ -17,24 +33,27 @@ justify-content: space-evenly;
 margin: 5% 0;
 `
 
-const PublicProfilePage = props => {
+const PublicProfilePage = () => {
 
-    const [memberData, setMember] = useState([props.user]);
+    const [memberData, setMember] = useState([]);
+    const [count, setCount] = useState(1);
+    const addOne = () => setCount(count + 1);
+    const subtractOne = () => setCount(count - 1);
+    const userId = "tom"; 
 
-    //props.user passes in the state object from guideReducer.js
 
   useEffect(() => {
       
    //axiosWithAuth allows the .get to recieve data due to authorization needed   
         axiosWithAuth()
-           .get('https://guidr1.herokuapp.com/api/profiles/public/')
+           .get(`https://guidr1.herokuapp.com/api/profiles/public/${count}`)
           .then(response => {
             console.log(response);
           
-               setMember(response.results);
+               setMember(response.data[0]);
           })
           .catch(error => console.log(error));
-      }, []);
+      }, [count]);
 
       console.log(memberData);
  
@@ -42,18 +61,21 @@ const PublicProfilePage = props => {
     
     <div>
       <h2>Our wonderfull guides!</h2>
+      <button onClick={subtractOne}>last guide</button>
+      <button onClick={addOne}>next guide</button>
+     
       <Flex>
-      {memberData.map(item => {
+     
           
-          return <PublicProfile
-          key={item.id} 
-          profile_title = {item.title}
-          tagline= {item.tagline}
-          guide_specialty= {item.guideSpecialty}
-          age= {item.age}
-      years_experience= {item.yearsExperience}
-          />;
-        })}
+          <ProfileCard>
+          <Title>{memberData.title}</Title>
+          <Info>{userId}</Info>
+          <Info>tagline: {memberData.tagline}</Info>
+          <Info>Specialty: {memberData.guide_specialty}</Info>
+          <Info>age: {memberData.age}</Info>
+    <Info>Years Experience: {memberData.years_experience}</Info>
+          </ProfileCard>
+      
         </Flex>
 
      
@@ -61,15 +83,6 @@ const PublicProfilePage = props => {
   );
 }
 
-const mapStateToProps = state =>{
-  return {
-      user: state.profile
-  }
-}
 
 
-export default connect(
-  mapStateToProps,
-  {}
-) (PublicProfilePage);
-
+export default PublicProfilePage;

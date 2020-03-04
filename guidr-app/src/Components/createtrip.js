@@ -31,7 +31,7 @@ const CreateTrip = () => {
         
         })
         .catch(error => console.log(error));
-    }, [newTrip]);
+    }, []);
 
 
       const handleChanges = event => {

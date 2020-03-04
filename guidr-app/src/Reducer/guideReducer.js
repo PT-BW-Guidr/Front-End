@@ -26,9 +26,9 @@ export const intialState = {
     },
     profile:{
         id: 0,
-        title: "adventure-man",
+        profile_title: "adventure-man",
         tagline:"gonna send it",
-        guideSpecialty:"mushrooms",
+        guide_specialty:"mushrooms",
         age: Number,
         yearsExperience: Number
     }
