@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
-import { axiosWithAuth } from './Utilities/Utilities';
-import styled from "styled-components";
+import React from "react";
+import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const ProfileCard = styled.div`
   display:flex;
@@ -24,35 +24,33 @@ margin-bottom:10px;
 // should display private profile to edit
 const PrivateProfile = (props) => {
 
-  useEffect(() => {
-      
-    
-         axiosWithAuth()
-            .get(`https://guidr1.herokuapp.com/api/profiles/`)
-           .then(response => {
-             console.log(response);
-           
-               
-           })
-           .catch(error => console.log(error));
-       }, []);
- 
-    
- 
-    return (
-      
-      <ProfileCard>
-        <div>
-        <Title>{props.title}</Title>
-        <Info>tagline:{props.tagline}</Info>
-        <Info>Specialty:{props.guide_specialty}</Info>
-        <Info>age:{props.age}</Info>
-  <Info>Years Experience:{props.years_experience}</Info>
-        </div>
-      </ProfileCard>
-    );
-
- 
+  
+  
+  return (
+    <div>
+        your profile here.
+      {props.user.map(person => (
+      <div  key={person.id}>
+        <h1>Title: {person.title}</h1>
+        <h2>Tagline: {person.tagline}</h2>
+        <p>Guide specialty: {person.guideSpecialty}</p>
+        <p>age: {person.age}</p>
+        <p>Years experience: {person.yearsExperience}</p>
+      </div>
+      ))}
+      <Link to = '/edits'><button>Edit Profile</button></Link>
+    </div>
+  );
 };
 
-export default PrivateProfile;
+const mapStateToProps = state =>{
+  return {
+      user: state.profile
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {}
+) (PrivateProfile);
+

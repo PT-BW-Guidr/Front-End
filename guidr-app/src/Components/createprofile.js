@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import axios from "axios";
+import {connect} from 'react-redux';
+import { axiosWithAuth } from './Utilities/Utilities';
 //form to create profile
 
 const Flex= styled.div`
@@ -11,29 +13,11 @@ align-content:space evenly;
 margin: 0 35%;
 `
 
-function CreateProfile () {
+function CreateProfile (props) {
 
-    const [newMember, setNewMember] = useState({
-        profile_title: "", 
-        tagline: "",
-        guide_specialty:"",
-        age:"",
-        yearsExperience:"",
-        trip_type:"", 
-    });
+    const [newMember, setNewMember] = useState(props.profile);
+    const id = props.userid;
 
-    useEffect(() => {
-      
-      
-      axios
-         .post('https://guidr1.herokuapp.com/api/profiles/')
-        .then(response => {
-          console.log(response);
-        
-            setNewMember(response.results);
-        })
-        .catch(error => console.log(error));
-    }, [newMember]);
 
 
 
@@ -45,9 +29,16 @@ function CreateProfile () {
 
       const submitForm = event => {
         console.log('submitting');
-        event.preventDefault(); 
-        setNewMember(newMember);
-        setNewMember({ profile_title: "", tagline: "" , guide_specialty:"", age:"", years_experience:"" }); 
+        event.preventDefault();        
+        axiosWithAuth()
+        .post(`https://guidr1.herokuapp.com/api/profiles/${id}`, newMember)
+       .then(response => {
+         console.log(response);
+       
+           setNewMember(response.results);
+       })
+       .catch(error => console.log(error)); 
+       setNewMember(props.profile);
       };
     
 
@@ -117,4 +108,15 @@ function CreateProfile () {
     
   }
 
-  export default CreateProfile;
+  const mapStateToProps = state =>{
+    return{
+      profile: state.profile,
+      user: state.token
+    }
+  }
+
+  export default connect(
+    mapStateToProps,
+    {}
+) (CreateProfile);
+ 

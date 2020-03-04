@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import {connect} from 'react-redux';
 import {getLogin, getCred, createUser} from '../Reducer/Actions'
-import { intialState } from '../Reducer/guideReducer';
+
 import { Link } from 'react-router-dom';
 
 const Register = props =>{
@@ -11,19 +11,21 @@ const Register = props =>{
 
     const handleChange = e => {
         e.preventDefault();
+        
         setUser({
             ...user,[e.target.name]: e.target.value
         })
-        console.log('user credentials', user);
         props.getCred(user);
-
+        
     }
-
+    console.log('user credentials', user);
     const onsSubmit = e =>{
         e.preventDefault();
         props.createUser(props.user);
-        props.history.push('/protected');
-        setUser(intialState);
+        props.history.push('/privateprofile');
+        console.log(user);
+        setUser(props.user);
+
     }
 
 

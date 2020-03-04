@@ -12,18 +12,19 @@ const Login = props =>{
 
     const handleChange = e => {
         e.preventDefault();
+        
         setUser({
             ...user,[e.target.name]: e.target.value
         })
-        console.log('user credentials', user);
         props.getCred(user);
+       
 
     }
-
+    console.log('user credentials', user);
     const onsSubmit = e =>{
         e.preventDefault();
         props.getLogin(props.user);
-        props.history.push('/protected');
+        props.history.push('/privateprofile');
         setUser(intialState.user)
     }
 

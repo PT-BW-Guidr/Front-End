@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import { Link} from 'react-router-dom';
-
+import {connect} from 'react-redux';
 import PrivateTrip from './privatetrip'
 import { axiosWithAuth } from './Utilities/Utilities';
 
 
 
 
- const PrivateTrips = ()=>{
+ const PrivateTrips = (props)=>{
 
     const [Trips, setTrip] = useState(props.user);
 
