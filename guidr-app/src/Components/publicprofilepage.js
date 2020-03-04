@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import axios from "axios";
 import PublicProfile from "./publicprofile";
 import styled from "styled-components";
 import { axiosWithAuth } from './Utilities/Utilities';
@@ -29,17 +29,16 @@ const PublicProfilePage = props => {
         axiosWithAuth()
            .get('https://guidr1.herokuapp.com/api/profiles/public/')
           .then(response => {
-            console.log(response);
+            console.log(response.data);
           
-               setMember(response.results);
+              //  setMember(response.data);
           })
           .catch(error => console.log(error));
       }, []);
 
       console.log(memberData);
  
-  return (
-    
+  return (    
     <div>
       <h1>Our wonderfull guides!</h1>
       <Flex>

@@ -16,7 +16,10 @@ margin: 2% 35%;
 function CreateProfile (props) {
 
     const [newMember, setNewMember] = useState(props.profile);
-    const id = props.userid;
+    
+    const id = props.user.userid;
+
+    console.log(id);
 
 
 

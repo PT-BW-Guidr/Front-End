@@ -6,6 +6,7 @@ var jwt_decode = require('jwt-decode');
 export const GET_LOGIN = "GET_LOGIN";
 export const GET_CRED = "GET_CRED";
 export const CREATE_USER = "CREATE_USER";
+export const SET_ID = "SET_ID";
 
 export const getLogin = (credentials) => dispatch =>{
     dispatch({type: GET_LOGIN});
@@ -16,7 +17,7 @@ export const getLogin = (credentials) => dispatch =>{
             let token = jwt_decode(res.data.token);
             dispatch({type: CREATE_USER, payload: token});
             console.log(token);
-            localStorage.setItem('token', token)
+            localStorage.setItem('token', res.data.token)
             
         })
         .catch(err => console.log('your username or password are inccorect'))
@@ -38,6 +39,6 @@ export const createUser = (credentials) => dispatch =>{
             let token = jwt_decode(res.data.token);
             dispatch({type: CREATE_USER, payload: token});
             console.log(token);
-            localStorage.setItem('token', token)
+            localStorage.setItem('token', res.data.token)
         })
 }
