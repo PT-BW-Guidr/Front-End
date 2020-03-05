@@ -15,11 +15,13 @@ margin: 2% 35%;
 
 function CreateProfile (props) {
 
-    const [newMember, setNewMember] = useState(props.profile);
+    const [newMember, setNewMember] = useState({});
     
     const id = props.user.userid;
 
     console.log(id);
+    console.log(newMember);
+    console.log(props.profile);
 
 
 
@@ -27,18 +29,40 @@ function CreateProfile (props) {
       const handleChanges = event => {
        
         setNewMember({...newMember,  [event.target.name]: event.target.value });
+        
     
       };
+      console.log({
+        user_id: id,
+        title: newMember.title,
+        tagline: newMember.tagline,
+        guide_specialty: newMember.guide_specialty,
+        age: newMember.age,
+        years_experience: newMember.years_experience,
+        public_url: `/public/${id}`,
+        avatar_url:''
+      });
 
       const submitForm = event => {
         console.log('submitting');
-        event.preventDefault();        
+        event.preventDefault(); 
+      
         axiosWithAuth()
-        .post(`https://guidr1.herokuapp.com/api/profiles/${id}`, newMember)
+        .post(`https://guidr1.herokuapp.com/api/profiles/`,{
+          user_id: id,
+          title: newMember.title,
+          tagline: newMember.tagline,
+          guide_specialty: newMember.guide_specialty,
+          age: newMember.age,
+          years_experience: newMember.years_experience,
+          public_url: `/public/${id}`,
+          avatar_url:''
+        })
+        
        .then(response => {
          console.log(response);
        
-           setNewMember(response.results);
+          //  setNewMember(response.results);
        })
        .catch(error => console.log(error)); 
        setNewMember(props.profile);
@@ -54,14 +78,13 @@ function CreateProfile (props) {
         <form onSubmit={submitForm}>
       <Flex>
         
-        <label htmlFor="profile_title">Title</label>
+        <label htmlFor="title">Title</label>
         <input
           type="text"
           placeholder="Title"
-          id="profile_title"
-          name="profile_title"
-          value={newMember.profile_title}
-           onChange={handleChanges}
+          id="title"
+          name="title"
+          onChange={handleChanges}
         />
        
       
@@ -70,8 +93,7 @@ function CreateProfile (props) {
           id="tagline"
           name="tagline"
           placeholder="Tagline"
-          value={newMember.tagline}
-           onChange={handleChanges}
+          onChange={handleChanges}
         />
 
 <       label htmlFor="guide_specialty">Guide Specialty</label>
@@ -79,8 +101,7 @@ function CreateProfile (props) {
           id="guide_specialty"
           name="guide_specialty"
           placeholder="Guide Specialty"
-          value={newMember.guide_specialty}
-           onChange={handleChanges}
+          onChange={handleChanges}
         />
 
         <label htmlFor="age">age</label>
@@ -88,17 +109,15 @@ function CreateProfile (props) {
           id="age"
           name="age"
           placeholder="Age"
-          value={newMember.age}
-           onChange={handleChanges}
+          onChange={handleChanges}
         />
 
-         <label htmlFor="yearsExperience">years experience</label>
+         <label htmlFor="years_experience">years experience</label>
         <input
-          id="yearsExperience"
-          name="yearsExperience"
+          id="years_experience"
+          name="years_experience"
           placeholder="Years Experience"
-          value={newMember.years_experience}
-           onChange={handleChanges}
+          onChange={handleChanges}
         />
 
 

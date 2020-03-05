@@ -27,11 +27,11 @@ const PublicProfilePage = props => {
       
    //axiosWithAuth allows the .get to recieve data due to authorization needed   
         axiosWithAuth()
-           .get('https://guidr1.herokuapp.com/api/profiles/public/')
+          .get('https://guidr1.herokuapp.com/api/profiles')
           .then(response => {
             console.log(response.data);
           
-              //  setMember(response.data);
+              setMember(response.data);
           })
           .catch(error => console.log(error));
       }, []);
@@ -48,9 +48,9 @@ const PublicProfilePage = props => {
           key={item.id} 
           profile_title = {item.title}
           tagline= {item.tagline}
-          guide_specialty= {item.guideSpecialty}
+          guide_specialty= {item.guide_specialty}
           age= {item.age}
-      years_experience= {item.yearsExperience}
+          years_experience= {item.years_experience}
           />;
         })}
         </Flex>

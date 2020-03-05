@@ -10,22 +10,20 @@ const Register = props =>{
     const [user, setUser] = useState(props.user)
 
     const handleChange = e => {
-        e.preventDefault();
-        
+        e.preventDefault();        
         setUser({
             ...user,[e.target.name]: e.target.value
         })
-        props.getCred(user);
+        
         
     }
     console.log('user credentials', user);
     const onsSubmit = e =>{
         e.preventDefault();
-        props.createUser(props.user);
-        props.history.push('/privateprofile');
+        props.createUser(props.user,props);        
         console.log(user);
         setUser(props.user);
-
+        props.getCred(user);
     }
 
 
