@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { axiosWithAuth } from "./Utilities/Utilities";
-
+import styled from "styled-components";
 
 const ProfileCard = styled.div`
   display:flex;
@@ -42,24 +42,24 @@ const PrivateProfile = (props) => {
     })
     .catch(error => console.log(error));
 
-  },[])
+  },[user, id])
 
   
   
   
   return (
-    <div>
+    <ProfileCard>
         your profile here.      
       <div  key={user.id}>
-        <h1>Title: {user.title}</h1>
-        <h2>Tagline: {user.tagline}</h2>
-        <p>Guide specialty: {user.guideSpecialty}</p>
-        <p>age: {user.age}</p>
-        <p>Years experience: {user.yearsExperience}</p>
+        <Title>Title: {user.title}</Title>
+        <Info>Tagline: {user.tagline}</Info>
+        <Info>Guide specialty: {user.guideSpecialty}</Info>
+        <Info>age: {user.age}</Info>
+        <Info>Years experience: {user.yearsExperience}</Info>
       </div>
       
       <Link to = '/edits'><button>Edit Profile</button></Link>
-    </div>
+    </ProfileCard>
   );
 };
 

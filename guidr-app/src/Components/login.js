@@ -4,7 +4,15 @@ import {connect} from 'react-redux';
 import {getLogin, getCred} from '../Reducer/Actions'
 import { intialState } from '../Reducer/guideReducer';
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
 
+const Flex= styled.div`
+display: flex;
+flex-flow: column wrap;
+justify-content: center;
+align-content:space evenly;
+margin: 0 35%;
+`
 
 const Login = props =>{
 
@@ -30,23 +38,30 @@ const Login = props =>{
 
 
     return(
-        <div  className = 'Login'>
+        <Flex>
             <h1>Sign In Here!</h1>
             <form onSubmit={onsSubmit}>
+            <div>
+            <label htmlFor="username">user name</label>
+            
                 <input
                 type = 'text'
                 name = 'username'
                 onChange = {handleChange}
                 />
+                </div>
+                <div>
+                <label htmlFor="password">password</label>
                 <input
                 type = 'text'
                 name = 'password'
                 onChange ={handleChange}
                 />
+                </div>
                 <button type ="submit" >Login</button>
             </form>
             <Link to = "/register">No Account? Sign Up Here!</Link>
-        </div>
+        </Flex>
     )
 }
 const mapStateToProps = state =>{

@@ -18,20 +18,6 @@ const CreateTrip = props => {
     const [id, setId] = useState(props.user.userid);
 
 
-<<<<<<< HEAD
-    useEffect(() => {
-      
-      
-      axios
-         .post('https://guidr1.herokuapp.com/api/trips/')
-        .then(response => {
-          console.log(response);
-        
-        })
-        .catch(error => console.log(error));
-    }, []);
-=======
->>>>>>> 9ce19fd01f45a30dbb13a1400d6f3914a71e6052
 
 
       const handleChanges = event => {

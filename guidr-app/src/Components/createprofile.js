@@ -17,33 +17,32 @@ margin: 0 35%;
 function CreateProfile (props) {
 
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = data => console.log(data);
+
   console.log(errors);
 
-    const [newMember, setNewMember] = useState(props.profile);
+    const [newMember, setNewMember] = useState(props.user);
     
     const id = props.user.userid;
 
-    console.log(id);
+    // console.log(id);
 
 
 
 
       const handleChanges = event => {
-       
+      
         setNewMember({...newMember,  [event.target.name]: event.target.value });
-    
+        
       };
 
-      const submitForm = event => {
+      const submitForm = (event) => {
         console.log('submitting');
-        event.preventDefault();
+        
                
         axiosWithAuth()
         .post(`https://guidr1.herokuapp.com/api/profiles/${id}`, newMember)
        .then(response => {
          console.log(response);
-       
            setNewMember(response.results);
        })
        .catch(error => console.log(error)); 
@@ -57,7 +56,7 @@ function CreateProfile (props) {
 
       <div>
         <h2>Enter Profile info to get started!</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit= {handleSubmit(submitForm)}>
       <Flex>
         
         <label htmlFor="profile_title">Title</label>
@@ -66,7 +65,7 @@ function CreateProfile (props) {
           placeholder="Title"
           id="profile_title"
           name="profile_title"
-          value={newMember.profile_title}
+          // value={newMember.profile_title}
            onChange={handleChanges}
         />
        
@@ -76,8 +75,8 @@ function CreateProfile (props) {
           id="tagline"
           name="tagline"
           placeholder="Tagline"
-          value={newMember.tagline}
-           onChange={handleChanges}
+          // value={newMember.tagline}
+            onChange={handleChanges}
         />
 
 <       label htmlFor="guide_specialty">Guide Specialty</label>
@@ -85,21 +84,31 @@ function CreateProfile (props) {
           id="guide_specialty"
           name="guide_specialty"
           placeholder="Guide Specialty"
-          value={newMember.guide_specialty}
-           onChange={handleChanges}
+          // value={newMember.guide_specialty}
+            onChange={handleChanges}
         />
 
         <label htmlFor="age">age</label>
-        <input type="text" placeholder="age" name="age" id="age" ref= { register({max: 99, min: 18})} />
-   
+        <input 
+         type="text"
+         placeholder="age" 
+         name="age" 
+         id="age"
+          // value={newMember.age}
+          onChange={handleChanges} 
+         ref= { register({required: "required", pattern:{message:"required input"}})} 
+         />
+
+         {errors.age && errors.age.message}
+        
 
          <label htmlFor="yearsExperience">years experience</label>
         <input
           id="yearsExperience"
           name="yearsExperience"
           placeholder="Years Experience"
-          value={newMember.years_experience}
-           onChange={handleChanges}
+          // value={newMember.years_experience}
+            onChange={handleChanges}
         />
 
 

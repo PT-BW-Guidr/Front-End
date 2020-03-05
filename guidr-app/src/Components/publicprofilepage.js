@@ -1,9 +1,4 @@
 import React, {useState, useEffect} from 'react';
-<<<<<<< HEAD
-=======
-import axios from "axios";
-import PublicProfile from "./publicprofile";
->>>>>>> 9ce19fd01f45a30dbb13a1400d6f3914a71e6052
 import styled from "styled-components";
 import { axiosWithAuth } from './Utilities/Utilities';
 import {connect} from 'react-redux';
@@ -55,7 +50,7 @@ const PublicProfilePage = () => {
           .then(response => {
             console.log(response.data);
           
-              //  setMember(response.data);
+                setMember(response.data[0]);
           })
           .catch(error => console.log(error));
       }, [count]);
