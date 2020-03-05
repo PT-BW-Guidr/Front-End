@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
 
 const ProfileCard = styled.div`
   display:flex;

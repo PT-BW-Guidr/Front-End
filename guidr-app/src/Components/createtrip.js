@@ -44,7 +44,7 @@ const CreateTrip = () => {
     const submitForm = event => {
         event.preventDefault(); 
         setNewTrip(newTrip);
-        setNewTrip({ trip_title: "", description:'', duration:'',distance:'',trip_type:''}); 
+        setNewTrip({ trip_title: "", description:'', duration:'',distance:'',trip_type:'',is_private:false}); 
       };
 
   return (
@@ -71,6 +71,13 @@ const CreateTrip = () => {
         value={newTrip.description}
         onChange={handleChanges}
       />
+       <label>keep private? :<span>    </span> 
+          <input
+            name="is_private"
+            type="checkbox"
+            checked={newTrip.is_private}
+            onChange={handleChanges} />
+            </label>  
 
 <label htmlFor="duration">Duration</label>
       <input

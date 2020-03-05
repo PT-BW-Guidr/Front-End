@@ -7,6 +7,7 @@ import { axiosWithAuth } from './Utilities/Utilities';
 
 
 
+
  const PrivateTrips = (props)=>{
 
     const [Trips, setTrip] = useState(props.user);

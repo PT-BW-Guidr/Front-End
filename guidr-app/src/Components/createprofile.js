@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import axios from "axios";
 import {connect} from 'react-redux';
 import { axiosWithAuth } from './Utilities/Utilities';
+import { useForm } from "react-hook-form";
 //form to create profile
 
 const Flex= styled.div`
@@ -14,6 +15,10 @@ margin: 0 35%;
 `
 
 function CreateProfile (props) {
+
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = data => console.log(data);
+  console.log(errors);
 
     const [newMember, setNewMember] = useState(props.profile);
     const id = props.userid;
@@ -29,7 +34,8 @@ function CreateProfile (props) {
 
       const submitForm = event => {
         console.log('submitting');
-        event.preventDefault();        
+        event.preventDefault();
+               
         axiosWithAuth()
         .post(`https://guidr1.herokuapp.com/api/profiles/${id}`, newMember)
        .then(response => {
@@ -48,7 +54,7 @@ function CreateProfile (props) {
 
       <div>
         <h2>Enter Profile info to get started!</h2>
-        <form onSubmit={submitForm}>
+        <form onSubmit={handleSubmit(onSubmit)}>
       <Flex>
         
         <label htmlFor="profile_title">Title</label>
@@ -81,13 +87,8 @@ function CreateProfile (props) {
         />
 
         <label htmlFor="age">age</label>
-        <input
-          id="age"
-          name="age"
-          placeholder="Age"
-          value={newMember.age}
-           onChange={handleChanges}
-        />
+        <input type="text" placeholder="age" name="age" id="age" ref= { register({max: 99, min: 18})} />
+   
 
          <label htmlFor="yearsExperience">years experience</label>
         <input
