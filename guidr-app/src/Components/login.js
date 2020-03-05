@@ -16,26 +16,25 @@ margin: 0 35%;
 
 const Login = props =>{
 
-    const [user, setUser] = useState(intialState.user)
+    const [user, setUser] = useState(props.user)
 
     const handleChange = e => {
-        e.preventDefault();
-        
+        e.preventDefault();        
         setUser({
             ...user,[e.target.name]: e.target.value
         })
         props.getCred(user);
-       
-
     }
+
     console.log('user credentials', user);
+
     const onsSubmit = e =>{
         e.preventDefault();
-        props.getLogin(props.user);
-        props.history.push('/privateprofile');
-        setUser(intialState.user)
+        props.getLogin(props.user, props);        
+        setUser(props.user)
     }
 
+    
 
     return(
         <Flex>

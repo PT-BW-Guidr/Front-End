@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import { axiosWithAuth } from './Utilities/Utilities';
 import {connect} from 'react-redux';
+import PublicProfile from "./privateprofile"
 
 
 const ProfileCard = styled.div`
@@ -36,45 +37,45 @@ margin: 5% 0;
 const PublicProfilePage = () => {
 
     const [memberData, setMember] = useState([]);
-    const [count, setCount] = useState(1);
-    const addOne = () => setCount(count + 1);
-    const subtractOne = () => setCount(count - 1);
-    const userId = "tom"; 
+   
+    
 
 
   useEffect(() => {
       
    //axiosWithAuth allows the .get to recieve data due to authorization needed   
         axiosWithAuth()
-           .get(`https://guidr1.herokuapp.com/api/profiles/public/${count}`)
+          .get('https://guidr1.herokuapp.com/api/profiles')
           .then(response => {
             console.log(response.data);
           
-                setMember(response.data[0]);
+              setMember(response.data);
           })
           .catch(error => console.log(error));
-      }, [count]);
+      }, []);
 
       console.log(memberData);
  
   return (    
     <div>
       <h2>Our wonderfull guides!</h2>
-      <button onClick={subtractOne}>last guide</button>
-      <button onClick={addOne}>next guide</button>
+
      
       <Flex>
      
           
-          <ProfileCard>
-          <Title>{memberData.title}</Title>
-          <Info>{userId}</Info>
-          <Info>tagline: {memberData.tagline}</Info>
-          <Info>Specialty: {memberData.guide_specialty}</Info>
-          <Info>age: {memberData.age}</Info>
-    <Info>Years Experience: {memberData.years_experience}</Info>
-          </ProfileCard>
       
+          {memberData.map(item => {
+          
+            return <PublicProfile
+            key={item.id} 
+            profile_title = {item.title}
+            tagline= {item.tagline}
+            guide_specialty= {item.guide_specialty}
+            age= {item.age}
+            years_experience= {item.years_experience}
+            />;
+          })}
         </Flex>
 
      
