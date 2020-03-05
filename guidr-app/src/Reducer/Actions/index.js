@@ -8,16 +8,18 @@ export const GET_CRED = "GET_CRED";
 export const CREATE_USER = "CREATE_USER";
 export const SET_ID = "SET_ID";
 
-export const getLogin = (credentials) => dispatch =>{
-    dispatch({type: GET_LOGIN});
+export const getLogin = (credentials, props) => dispatch =>{
+    
     axios
         .post(`https://guidr1.herokuapp.com/api/auth/login`, {username: credentials.username, password: credentials.password})
         .then(res =>{
             console.log(res);
             let token = jwt_decode(res.data.token);
+            dispatch({type: GET_LOGIN});
             dispatch({type: CREATE_USER, payload: token});
             console.log(token);
             localStorage.setItem('token', res.data.token)
+            
             
         })
         .catch(err => console.log('your username or password are inccorect'))
@@ -30,7 +32,7 @@ export const getCred = (credentials) => dispatch =>{
 
 }
 
-export const createUser = (credentials) => dispatch =>{
+export const createUser = (credentials, props) => dispatch =>{
     
     axios
         .post('https://guidr1.herokuapp.com/api/auth/register', {username: credentials.username, password: credentials.password})
@@ -38,7 +40,10 @@ export const createUser = (credentials) => dispatch =>{
             console.log(res);
             let token = jwt_decode(res.data.token);
             dispatch({type: CREATE_USER, payload: token});
+            dispatch({type: SET_ID, payload: token.userid});
             console.log(token);
             localStorage.setItem('token', res.data.token)
+            props.history.push('/privateprofile');
         })
+        .catch(err => console.log('Idk how you messed up but you did lol'))
 }

@@ -13,34 +13,38 @@ const PrivateProfile = (props) => {
 
   console.log(id);
 
-  const [user, setUser] = useState(props.profile);
+  const [user, setUser] = useState([{}]);
 
   useEffect(()=>{
     axiosWithAuth()
-    .get(`https://guidr1.herokuapp.com/api/users/${id}`)
+    .get(`https://guidr1.herokuapp.com/api/users/3`)
     .then(res =>{
       console.log(res.data);
       setUser(res.data);
-      console.log(user);
+      
     })
     .catch(error => console.log(error));
 
-  },[])
+  },[id])
 
   
-  
+  console.log(user);
   
   return (
     <div>
-        your profile here.      
-      <div  key={user.id}>
-        <h1>Title: {user.title}</h1>
-        <h2>Tagline: {user.tagline}</h2>
-        <p>Guide specialty: {user.guideSpecialty}</p>
-        <p>age: {user.age}</p>
-        <p>Years experience: {user.yearsExperience}</p>
-      </div>
-      
+        {user.map(users=>{
+
+          return(
+          <div  key={users.id}>
+            <h1>Title: {users.profile_title}</h1>
+            <h2>Tagline: {users.tagline}</h2>
+            <p>Guide specialty: {users.guide_specialty}</p>
+            <p>age: {users.age}</p>
+            <p>Years experience: {users.years_experience}</p>
+          </div>
+          )
+          
+        })}     
       <Link to = '/edits'><button>Edit Profile</button></Link>
     </div>
   );
