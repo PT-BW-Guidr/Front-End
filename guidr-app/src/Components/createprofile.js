@@ -21,7 +21,10 @@ function CreateProfile (props) {
   console.log(errors);
 
     const [newMember, setNewMember] = useState(props.profile);
-    const id = props.userid;
+    
+    const id = props.user.userid;
+
+    console.log(id);
 
 
 

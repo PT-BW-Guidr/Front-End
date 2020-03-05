@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
-
+import { axiosWithAuth } from "./Utilities/Utilities";
+import {connect} from 'react-redux';
 // Form for creating trip
 
 const Flex= styled.div`
@@ -10,17 +11,14 @@ flex-flow: column wrap;
 justify-content: center;
 margin: 1% 35%;
 `
-const CreateTrip = () => {
+const CreateTrip = props => {
 
-    const [newTrip, setNewTrip] = useState({
-        trip_title: "",
-        description:"",
-        duration:"",
-        distance:"",
-        trip_type:"", 
-    
-    });
+    const [newTrip, setNewTrip] = useState({});
 
+    const [id, setId] = useState(props.user.userid);
+
+
+<<<<<<< HEAD
     useEffect(() => {
       
       
@@ -32,6 +30,8 @@ const CreateTrip = () => {
         })
         .catch(error => console.log(error));
     }, []);
+=======
+>>>>>>> 9ce19fd01f45a30dbb13a1400d6f3914a71e6052
 
 
       const handleChanges = event => {
@@ -42,9 +42,16 @@ const CreateTrip = () => {
 
 
     const submitForm = event => {
-        event.preventDefault(); 
-        setNewTrip(newTrip);
-        setNewTrip({ trip_title: "", description:'', duration:'',distance:'',trip_type:'',is_private:false}); 
+        event.preventDefault();
+        axiosWithAuth()
+       .post(`https://guidr1.herokuapp.com/api/trips/${id}`)
+       .then(response => {
+         console.log(response);
+          setNewTrip(newTrip);
+       })
+       .catch(error => console.log(error)); 
+        
+        setNewTrip({ trip_title: "", description:'', duration:'',distance:'',trip_type:''}); 
       };
 
   return (
@@ -116,4 +123,15 @@ const CreateTrip = () => {
   );
 };
 
-export default CreateTrip;
+const mapStateToProps = state =>{
+  return {
+      user: state.token,
+      profile: state.profile,
+      trip: state.trip
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {}
+) (CreateTrip);

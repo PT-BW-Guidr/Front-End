@@ -1,4 +1,9 @@
 import React, {useState, useEffect} from 'react';
+<<<<<<< HEAD
+=======
+import axios from "axios";
+import PublicProfile from "./publicprofile";
+>>>>>>> 9ce19fd01f45a30dbb13a1400d6f3914a71e6052
 import styled from "styled-components";
 import { axiosWithAuth } from './Utilities/Utilities';
 import {connect} from 'react-redux';
@@ -48,17 +53,16 @@ const PublicProfilePage = () => {
         axiosWithAuth()
            .get(`https://guidr1.herokuapp.com/api/profiles/public/${count}`)
           .then(response => {
-            console.log(response);
+            console.log(response.data);
           
-               setMember(response.data[0]);
+              //  setMember(response.data);
           })
           .catch(error => console.log(error));
       }, [count]);
 
       console.log(memberData);
  
-  return (
-    
+  return (    
     <div>
       <h2>Our wonderfull guides!</h2>
       <button onClick={subtractOne}>last guide</button>
