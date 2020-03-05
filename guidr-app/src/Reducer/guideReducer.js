@@ -1,4 +1,4 @@
-import { GET_LOGIN, GET_CRED, CREATE_USER } from "./Actions"
+import { GET_LOGIN, GET_CRED, CREATE_USER, SET_ID } from "./Actions"
 
 
 
@@ -15,6 +15,8 @@ export const intialState = {
     },
     token: {},
     trip:{
+        id: 0,
+        user_id:'',
         title:"",
         description: "",
         isPrivate: true,
@@ -24,14 +26,15 @@ export const intialState = {
         date: Date.now(),
         tripType: ""
     },
-    profile:[{
+    profile:{
         id: 0,
+        user_id:'',
         title: "adventure-man",
         tagline:"gonna send it",
         guideSpecialty:"mushrooms",
         age: 9000,
         yearsExperience: 9000
-    }]
+    }
 
 }
 
@@ -50,7 +53,7 @@ export const guideReducer = (state = intialState, action) =>{
         case CREATE_USER:
             return{
                 ...state,
-                token: action.payload
+                token: action.payload               
             }
         default:
             return state;
