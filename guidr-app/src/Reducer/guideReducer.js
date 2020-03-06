@@ -9,8 +9,8 @@ export const intialState = {
     isSendingLogin: false,
     user: {
 
-        username:"AdventureMan",
-        password:"123456"
+        username:"",
+        password:""
     },
     token: {},
     trip:{
@@ -20,9 +20,9 @@ export const intialState = {
         description: "",
         is_private: true,
         is_professional: false,
-        duration: 0.00,
-        distance: 0.00,
-        date: Date.now(),
+        duration: "0.00",
+        distance: "0.00",
+        date: Date(),
         trip_type: ""
     },
     profile:{

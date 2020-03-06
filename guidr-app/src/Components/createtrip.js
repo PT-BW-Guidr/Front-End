@@ -13,7 +13,7 @@ margin: 1% 35%;
 `
 const CreateTrip = props => {
 
-    const [newTrip, setNewTrip] = useState({});
+    const [newTrip, setNewTrip] = useState(props.trip);
 
     const [id, setId] = useState(props.user.userid);
 
@@ -30,14 +30,24 @@ const CreateTrip = props => {
     const submitForm = event => {
         event.preventDefault();
         axiosWithAuth()
-       .post(`https://guidr1.herokuapp.com/api/trips/${id}`)
+       .post(`https://guidr1.herokuapp.com/api/trips`,{
+         user_id: id,
+         title: newTrip.title,
+         description: newTrip.description,
+         is_private: props.trip.is_private,
+         is_professional: false,
+         duration: newTrip.duration,
+         distance: newTrip.distance,
+         date: Date(),
+         trip_type: newTrip.trip_type         
+       })
        .then(response => {
-         console.log(response);
+         console.log(response.data);
           setNewTrip(newTrip);
        })
        .catch(error => console.log(error)); 
         
-        setNewTrip({ trip_title: "", description:'', duration:'',distance:'',trip_type:''}); 
+        setNewTrip(props.trip); 
       };
 
   return (
@@ -45,13 +55,12 @@ const CreateTrip = props => {
     <h1>your trip here</h1>
     <form onSubmit={submitForm}>
         <Flex>
-<label htmlFor="trip_title">Trip Title</label>
+<label htmlFor="title">Trip Title</label>
       <input
         type="text"
         placeholder="trip title"
-        id="trip_title"
-        name="trip_title"
-        value={newTrip.trip_title}
+        id="title"
+        name="title"        
         onChange={handleChanges}
       />
 
@@ -60,8 +69,7 @@ const CreateTrip = props => {
         type="text"
         placeholder="description"
         id="description"
-        name="description"
-        value={newTrip.description}
+        name="description"        
         onChange={handleChanges}
       />
 
@@ -70,8 +78,7 @@ const CreateTrip = props => {
         type="text"
         placeholder="duration"
         id="duration"
-        name="duration"
-        value={newTrip.duration}
+        name="duration"        
         onChange={handleChanges}
       />
 
@@ -80,19 +87,17 @@ const CreateTrip = props => {
         type="text"
         placeholder="distance"
         id="distance"
-        name="distance"
-        value={newTrip.distance}
+        name="distance"        
         onChange={handleChanges}
       />
 
 <label htmlFor="trip_type">Type of trip</label>
-        <input
-          id="trip_type"
-          name="trip_type"
-          placeholder="trip type"
-          value={newTrip.trip_type}
-        onChange={handleChanges}
-        />
+      <input
+         id="trip_type"
+         name="trip_type"
+         placeholder="trip type"          
+         onChange={handleChanges}
+      />
         <button type="submit">Create Trip</button>
         </Flex>
       </form>

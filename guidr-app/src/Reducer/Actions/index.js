@@ -8,7 +8,7 @@ export const GET_CRED = "GET_CRED";
 export const CREATE_USER = "CREATE_USER";
 export const SET_ID = "SET_ID";
 
-export const getLogin = (credentials, props) => dispatch =>{
+export const getLogin = (credentials) => dispatch =>{
     
     axios
         .post(`https://guidr1.herokuapp.com/api/auth/login`, {username: credentials.username, password: credentials.password})
