@@ -17,7 +17,7 @@ const PrivateProfile = (props) => {
 
   useEffect(()=>{
     axiosWithAuth()
-    .get(`https://guidr1.herokuapp.com/api/users/3`)
+    .get(`https://guidr1.herokuapp.com/api/users/data/${id}`)
     .then(res =>{
       console.log(res.data);
       setUser(res.data);
@@ -41,6 +41,11 @@ const PrivateProfile = (props) => {
             <p>Guide specialty: {users.guide_specialty}</p>
             <p>age: {users.age}</p>
             <p>Years experience: {users.years_experience}</p>
+          <p>Trip Title: {users.trips_title}</p>
+          <p>Trip Description: {users.description}</p>
+            <p>Trip Duration: {users.duration}</p>
+            <p>Trip Distance: {users.distance}</p>
+            <p>Trip Date: {users.date}</p>
           </div>
           )
           

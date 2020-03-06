@@ -37,7 +37,7 @@ const Login = props =>{
 
     const onsSubmit = e =>{
         e.preventDefault();
-        props.getLogin(props.user, props);        
+        props.getLogin(user, props);        
         setUser(props.user)
     }
 
