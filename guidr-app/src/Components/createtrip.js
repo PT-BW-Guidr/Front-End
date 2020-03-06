@@ -44,6 +44,7 @@ const CreateTrip = props => {
   <div>
     <h2>your trip here</h2>
     <form onSubmit={submitForm}>
+      
         <Flex>
 <label htmlFor="trip_title">Trip Title</label>
       <input
@@ -51,7 +52,7 @@ const CreateTrip = props => {
         placeholder="trip title"
         id="trip_title"
         name="trip_title"
-        value={newTrip.trip_title}
+        
         onChange={handleChanges}
       />
 
@@ -61,16 +62,10 @@ const CreateTrip = props => {
         placeholder="description"
         id="description"
         name="description"
-        value={newTrip.description}
+        
         onChange={handleChanges}
       />
-       <label>keep private? :<span>    </span> 
-          <input
-            name="is_private"
-            type="checkbox"
-            checked={newTrip.is_private}
-            onChange={handleChanges} />
-            </label>  
+       
 
 <label htmlFor="duration">Duration</label>
       <input
@@ -78,7 +73,7 @@ const CreateTrip = props => {
         placeholder="duration"
         id="duration"
         name="duration"
-        value={newTrip.duration}
+        
         onChange={handleChanges}
       />
 
@@ -88,7 +83,7 @@ const CreateTrip = props => {
         placeholder="distance"
         id="distance"
         name="distance"
-        value={newTrip.distance}
+        
         onChange={handleChanges}
       />
 
@@ -97,9 +92,16 @@ const CreateTrip = props => {
           id="trip_type"
           name="trip_type"
           placeholder="trip type"
-          value={newTrip.trip_type}
+          
         onChange={handleChanges}
         />
+<label>keep private? :<span>    </span> 
+        <input
+          name="is_private"
+          type="checkbox"   
+        onChange={handleChanges} />
+        </label> 
+
         <button type="submit">Create Trip</button>
         </Flex>
       </form>

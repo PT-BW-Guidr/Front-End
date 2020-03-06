@@ -8,9 +8,9 @@ import React from "react";
 import styled from "styled-components";
 
 const ProfileCard = styled.div`
-  display:flex;
+
   width:33%;
-  height: 700px;
+  height: 400px;
   background: white;
   border-radius: 30px;
   border: 4px ridge darkblue;

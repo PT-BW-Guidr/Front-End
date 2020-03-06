@@ -18,7 +18,7 @@ import register from './Components/register';
 
 const Nav =styled.div`
 padding:10px;
-background:linear-gradient(to top, #BC2900, #BA6D09, #71A8EE, #3072EB, #1552C6);
+background:linear-gradient(to top, #3072EB, #1552C6);
 `
 
 const store = createStore(reducer, applyMiddleware(thunk));

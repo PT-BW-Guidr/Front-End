@@ -16,37 +16,37 @@ margin: 0 35%;
 
 function CreateProfile (props) {
   const { register, handleSubmit, errors } = useForm();
-    const [newMember, setNewMember] = useState({});
+    const [newMember, setNewMember] = useState([props.profile]);
     
-    const id = props.user.userid;
-
+    const id = props.profile.id;
+    console.log(props)
     console.log(id);
-    console.log(newMember);
-    console.log(props.profile);
+    console.log("new member",newMember);
+    
 
 
 
 
       const handleChanges = event => {
-      
-        setNewMember({...newMember,  [event.target.name]: event.target.value });
+        
+        setNewMember({ ...newMember, [event.target.name]: event.target.value });
         
     
       };
-      console.log({
-        user_id: id,
-        title: newMember.title,
-        tagline: newMember.tagline,
-        guide_specialty: newMember.guide_specialty,
-        age: newMember.age,
-        years_experience: newMember.years_experience,
-        public_url: `/public/${id}`,
-        avatar_url:''
-      });
+      // console.log({
+      //   user_id: id,
+      //   title: newMember.title,
+      //   tagline: newMember.tagline,
+      //   guide_specialty: newMember.guide_specialty,
+      //   age: newMember.age,
+      //   years_experience: newMember.years_experience,
+      //   public_url: `/public/${id}`,
+      //   avatar_url:''
+      // });
 
       const submitForm = (event) => {
         console.log('submitting');
-        event.preventDefault(); 
+            event.preventDefault(); 
       
         axiosWithAuth()
         .post(`https://guidr1.herokuapp.com/api/profiles/`,{
@@ -58,14 +58,16 @@ function CreateProfile (props) {
           years_experience: newMember.years_experience,
           public_url: `/public/${id}`,
           avatar_url:''
+
         })
         
        .then(response => {
          console.log(response);
-       
-          //  setNewMember(response.results);
+         
+            setNewMember(props.user);
        })
-       .catch(error => console.log(error)); 
+       .catch(error => console.log(error));
+       
        setNewMember(props.profile);
       };
     
@@ -76,6 +78,7 @@ function CreateProfile (props) {
 
       <div>
         <h2>Enter Profile info to get started!</h2>
+        {/* <form onSubmit= {submitForm}> */}
         <form onSubmit= {handleSubmit(submitForm)}>
       <Flex>
         
@@ -83,25 +86,28 @@ function CreateProfile (props) {
         <input
           type="text"
           placeholder="Title"
-          id="title"
+           id="title"
           name="title"
+          // value={newMember.title}
           onChange={handleChanges}
         />
        
       
         <label htmlFor="tagline">Tagline</label>
         <input
-          id="tagline"
+           id="tagline"
           name="tagline"
           placeholder="Tagline"
+          // value={newMember.tagline}
           onChange={handleChanges}
         />
 
 <       label htmlFor="guide_specialty">Guide Specialty</label>
         <input
-          id="guide_specialty"
+           id="guide_specialty"
           name="guide_specialty"
           placeholder="Guide Specialty"
+          value={newMember.guide_specialty}
           onChange={handleChanges}
         />
 
@@ -110,6 +116,7 @@ function CreateProfile (props) {
           id="age"
           name="age"
           placeholder="Age"
+          value={newMember.age}
           onChange={handleChanges}
           ref= { register({required: "required", pattern:{message:"required input"}})} 
           />
@@ -119,9 +126,10 @@ function CreateProfile (props) {
 
          <label htmlFor="years_experience">years experience</label>
         <input
-          id="years_experience"
+           id="years_experience"
           name="years_experience"
           placeholder="Years Experience"
+          value={newMember.years_experience}
           onChange={handleChanges}
         />
 

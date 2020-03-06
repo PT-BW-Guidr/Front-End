@@ -1,29 +1,12 @@
 import React, {useState, useEffect} from 'react';
+import axios from "axios";
+import PublicProfile from "./publicprofile";
 import styled from "styled-components";
 import { axiosWithAuth } from './Utilities/Utilities';
 import {connect} from 'react-redux';
-import PublicProfile from "./privateprofile"
 
+// should display all profiles
 
-const ProfileCard = styled.div`
-  
-  width:30%;
-  height: 300px;
-  background: white;
-  border-radius: 30px;
-  border: 4px ridge darkblue;
-  margin-bottom: 20px;
-  justify-content:center;
-`
-
-const Title = styled.h2`
-text-shadow: 1px 1px 2px lightblue, 0 0 1em blue, 0 0 0.2em blue;
-
-`
-const Info = styled.h4`
-margin-bottom:10px;
-
-`
 
 
 
@@ -34,22 +17,21 @@ justify-content: space-evenly;
 margin: 5% 0;
 `
 
-const PublicProfilePage = () => {
+const PublicProfilePage = props => {
 
-    const [memberData, setMember] = useState([]);
-   
-    
+    const [memberData, setMember] = useState(props.user);
 
+    //props.user passes in the state object from guideReducer.js
 
   useEffect(() => {
       
    //axiosWithAuth allows the .get to recieve data due to authorization needed   
         axiosWithAuth()
-          .get('https://guidr1.herokuapp.com/api/profiles')
+          .get('https://guidr1.herokuapp.com/api/profiles/')
           .then(response => {
-            console.log(response.data);
+            console.log(response.data[0]);
           
-              setMember(response.data);
+              setMember(response.data[0]);
           })
           .catch(error => console.log(error));
       }, []);
@@ -58,24 +40,20 @@ const PublicProfilePage = () => {
  
   return (    
     <div>
-      <h2>Our wonderfull guides!</h2>
-
-     
+      <h1>Our wonderfull guides!</h1>
       <Flex>
-     
-          
-      
-          {memberData.map(item => {
-          
-            return <PublicProfile
-            key={item.id} 
-            profile_title = {item.title}
-            tagline= {item.tagline}
-            guide_specialty= {item.guide_specialty}
-            age= {item.age}
-            years_experience= {item.years_experience}
-            />;
-          })}
+      {/* {memberData.map(memberData => {
+          return( */}
+           <PublicProfile
+          key={memberData.user_id} 
+          profile_title = {memberData.title}
+          tagline= {memberData.tagline}
+          guide_specialty= {memberData.guide_specialty}
+          age= {memberData.age}
+          years_experience= {memberData.years_experience}
+          />
+          {/* );
+      })}  */}
         </Flex>
 
      
@@ -83,6 +61,14 @@ const PublicProfilePage = () => {
   );
 }
 
+const mapStateToProps = state =>{
+  return {
+      user: state.profile
+  }
+}
 
 
-export default PublicProfilePage;
+export default connect(
+  mapStateToProps,
+  {}
+) (PublicProfilePage);
