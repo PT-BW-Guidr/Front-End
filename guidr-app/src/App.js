@@ -17,8 +17,9 @@ import register from './Components/register';
 
 
 const Nav =styled.div`
+
+
 padding:10px;
-background:linear-gradient(to top, #3072EB, #1552C6);
 `
 
 const store = createStore(reducer, applyMiddleware(thunk));
@@ -34,7 +35,7 @@ function App() {
 
       <Link to='/home'><h1>guidr</h1></Link>
       <nav>
-        <Link to='/'>Home</Link>
+        <Link to='/privateprofile'>Home</Link>
         <Link to='/publicprofilepage'>View members!</Link>
         <Link to='/register'>Sign Up!</Link>
         <Link to='/login'>Log in</Link>
