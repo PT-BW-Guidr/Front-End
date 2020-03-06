@@ -11,7 +11,7 @@ justify-content: center;
 align-content:space evenly;
 margin: 10px 35%;
 padding:10px;
-background:linear-gradient(to top, #987277, #1552C6);
+background:linear-gradient(to bottom, #747185 , #B7AAB3);
 `
 
 const Inputs = styled.div`
@@ -58,7 +58,7 @@ const Register = props =>{
                 <div>
                 <label htmlFor="username">enter password</label>
                 <input
-                type = 'text'
+                type = 'password'
                 name = 'password'
                 onChange ={handleChange}
                 placeholder = {props.user.password}

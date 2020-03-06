@@ -13,7 +13,7 @@ justify-content: center;
 align-content:space evenly;
 margin: 0 35%;
 padding:10px;
-background:linear-gradient(to top, #987277, #1552C6);
+background:linear-gradient(to bottom, #747185 , #B7AAB3);
 `
 
 const Inputs = styled.div`
@@ -59,7 +59,7 @@ const Login = props =>{
                 <Inputs>
                 <label htmlFor="password">password</label>
                 <input
-                type = 'text'
+                type = 'password'
                 name = 'password'
                 onChange ={handleChange}
                 />

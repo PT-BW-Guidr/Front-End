@@ -139,7 +139,7 @@ flex-flow: column wrap;
 justify-content: center;
 margin: 1% 35%;
 padding:10px;
-background:linear-gradient(to top, #987277, #1552C6);
+background:linear-gradient(to bottom, #747185 , #B7AAB3);
 `
 const CreateTrip = props => {
 
@@ -179,9 +179,11 @@ const CreateTrip = props => {
 
   return (
   <div>
-    <h1>your trip here</h1>
+    
     <form onSubmit={submitForm}>
+      
         <Flex>
+        <h2>your trip here</h2>
 <label htmlFor="title">Trip Title</label>
       <input
         type="text"

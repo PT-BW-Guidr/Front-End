@@ -14,7 +14,7 @@ const ProfileCard = styled.div`
   height: 300px;
   background: white;
   border-radius: 30px;
-  border: 4px ridge darkblue;
+  border: 2px solid darkblue;
   margin-bottom: 20px;
   justify-content:center;
   background:linear-gradient(to bottom, #747185 , #B7AAB3);
