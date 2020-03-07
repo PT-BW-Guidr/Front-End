@@ -11,8 +11,8 @@ display: flex;
 flex-flow: column wrap;
 justify-content: center;
 align-content:space evenly;
-margin: 0 35%;
-padding:10px;
+margin: 2% 22%;
+padding:20px;
 background:linear-gradient(to bottom, #747185 , #B7AAB3);
 `
 
@@ -47,9 +47,10 @@ const Login = props =>{
         <Flex>
             <h2>Sign In Here!</h2>
             <form onSubmit={onsSubmit}>
+            <div>
             <Inputs>
             <label htmlFor="username">user name</label>
-            
+           
                 <input
                 type = 'text'
                 name = 'username'
@@ -64,6 +65,7 @@ const Login = props =>{
                 onChange ={handleChange}
                 />
                 </Inputs>
+                </div>
                 <button type ="submit" >Login</button>
             </form>
             <Link to = "/register">No Account? Sign Up Here!</Link>

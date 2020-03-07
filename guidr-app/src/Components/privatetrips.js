@@ -9,6 +9,8 @@ import styled from "styled-components"
 const Tripdiv = styled.div`
 margin-bottom: 20px;
 justify-content:center;
+margin: 2% 22%;
+padding:20px;
 
 `
 

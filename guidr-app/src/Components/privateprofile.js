@@ -9,8 +9,8 @@ const Flex= styled.div`
 display: flex;
 flex-flow: column wrap;
 justify-content: center;
-margin: 1% 20%;
-padding:10px;
+margin: 2% 22%;
+padding:20px;
 background:linear-gradient(to bottom, #747185 , #B7AAB3);
 border-radius:10px;
 `

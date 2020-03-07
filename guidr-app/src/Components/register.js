@@ -9,8 +9,8 @@ display: flex;
 flex-flow: column wrap;
 justify-content: center;
 align-content:space evenly;
-margin: 10px 35%;
-padding:10px;
+margin: 2% 22%;
+padding:20px;
 background:linear-gradient(to bottom, #747185 , #B7AAB3);
 `
 
@@ -47,6 +47,7 @@ const Register = props =>{
             <form onSubmit={onsSubmit}>
             <h2>Sign Up Here!</h2>
             <Inputs>
+            <div>
             <label htmlFor="username">enter username</label>
                 <input
                 type = 'text'
@@ -54,9 +55,10 @@ const Register = props =>{
                 onChange = {handleChange}
                 placeholder ={props.user.username}
                 />
+                </div>
                 </Inputs>
                 <div>
-                <label htmlFor="username">enter password</label>
+                <label htmlFor="username">enter password </label>
                 <input
                 type = 'password'
                 name = 'password'

@@ -29,7 +29,9 @@ a{
 }
 label {
   padding:8px 0;
-  margin-bottom: 8px;
+  margin: 8px 4px;
+
+  
 }
 
 h1 {
@@ -51,5 +53,10 @@ button{
   border:none;
   padding:10px;
   border-radius: 10px;
+  width:50%;
+  align-self: center;
 }
 
+div{
+  border-radius: 10px;
+}
