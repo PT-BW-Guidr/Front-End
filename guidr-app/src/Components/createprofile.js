@@ -172,6 +172,8 @@ flex-flow: column wrap;
 justify-content: center;
 align-content:space evenly;
 margin: 2% 35%;
+ padding:20px;
+ background:linear-gradient(to bottom, #747185 , #B7AAB3);
 `
 
 function CreateProfile (props) {
