@@ -28,11 +28,11 @@ export const intialState = {
     profile:{
         id: 0,
         user_id:'',
-        title: "",
-        tagline:"",
-        guide_specialty:"",
-        age: "",
-        years_experience: ""
+        title: "adventure-man",
+        tagline:"gonna send it",
+        guide_specialty:"mushrooms",
+        age: 9000,
+        years_experience: 9000
     }
 
 }
