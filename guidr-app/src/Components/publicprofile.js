@@ -10,7 +10,7 @@ import styled from "styled-components";
 
 const ProfileCard = styled.div`
   display:flex;
-  width:30%;
+  width:45%;
   height: 300px;
   background: white;
   border-radius: 30px;
@@ -21,7 +21,7 @@ const ProfileCard = styled.div`
 `
 
 const Title = styled.h2`
-text-shadow: 1px 1px 1px lightblue;
+text-shadow: 1px 1px 1px #5E2E37;
 `
 const Info = styled.h4`
 margin-bottom:10px;

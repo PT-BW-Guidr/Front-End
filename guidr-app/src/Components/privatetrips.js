@@ -3,9 +3,14 @@ import { Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PrivateTrip from './privatetrip'
 import { axiosWithAuth } from './Utilities/Utilities';
+import styled from "styled-components"
 
 
+const Tripdiv = styled.div`
+margin-bottom: 20px;
+justify-content:center;
 
+`
 
 
  const PrivateTrips = (props)=>{
@@ -27,7 +32,7 @@ import { axiosWithAuth } from './Utilities/Utilities';
   
     return (
     <div>
-        <div>
+        <Tripdiv>
       {Trips.map(item => {
           return <PrivateTrip
           key={item.id} 
@@ -38,7 +43,7 @@ import { axiosWithAuth } from './Utilities/Utilities';
       trip_type= {item.trip_type}
           />;
         })}
-        </div>
+        </Tripdiv>
 
         
     <Link to ='./createtrip'>Add a trip</Link>

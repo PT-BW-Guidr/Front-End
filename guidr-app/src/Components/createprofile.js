@@ -237,10 +237,10 @@ function CreateProfile (props) {
     return (
 
       <div>
-        <h1>Enter Profile info to get started!</h1>
+        
         <form onSubmit={submitForm}>
       <Flex>
-        
+      <h2>Enter Profile info to get started!</h2>
         <label htmlFor="title">Title</label>
         <input
           type="text"

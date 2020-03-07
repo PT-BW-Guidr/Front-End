@@ -9,11 +9,17 @@ const Flex= styled.div`
 display: flex;
 flex-flow: column wrap;
 justify-content: center;
-margin: 1% 35%;
+margin: 1% 20%;
 padding:10px;
 background:linear-gradient(to bottom, #747185 , #B7AAB3);
+border-radius:10px;
 `
-
+const Trip = styled.div`
+margin-bottom: 1%;
+justify-content:center;
+background:linear-gradient(to bottom, #747185 , #B7AAB3);
+border-radius:10px;
+`
 
 // should display private profile to edit
 const PrivateProfile = (props) => {
@@ -34,7 +40,7 @@ const PrivateProfile = (props) => {
     })
     .catch(error => console.log(error));
 
-  },[id])
+  },[])
 
   
   console.log(user);
@@ -44,17 +50,24 @@ const PrivateProfile = (props) => {
         {user.map(users=>{
 
           return(
-          <Flex  key={users.id}>
-            <h1>Title: {users.profile_title}</h1>
-            <h2>Tagline: {users.tagline}</h2>
+          <Flex  >
+           
+            <h1>{users.profile_title}</h1>
+            <div>
+            <h2>Tagline</h2>
+            <p>{users.tagline}</p>
+            </div>
             <p>Guide specialty: {users.guide_specialty}</p>
             <p>age: {users.age}</p>
             <p>Years experience: {users.years_experience}</p>
-          <p>Trip Title: {users.trips_title}</p>
+            <Trip>
+              <h2>Trips!</h2>
+          <p> {users.trips_title}</p>
           <p>Trip Description: {users.description}</p>
             <p>Trip Duration: {users.duration}</p>
             <p>Trip Distance: {users.distance}</p>
             <p>Trip Date: {users.date}</p>
+            </Trip>
           </Flex>
           )
           
