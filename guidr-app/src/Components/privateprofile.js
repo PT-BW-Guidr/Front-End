@@ -3,7 +3,16 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { axiosWithAuth } from "./Utilities/Utilities";
 import Axios from "axios";
+import styled from "styled-components"
 
+const Flex= styled.div`
+display: flex;
+flex-flow: column wrap;
+justify-content: center;
+margin: 1% 35%;
+padding:10px;
+background:linear-gradient(to bottom, #747185 , #B7AAB3);
+`
 
 
 // should display private profile to edit
@@ -35,7 +44,7 @@ const PrivateProfile = (props) => {
         {user.map(users=>{
 
           return(
-          <div  key={users.id}>
+          <Flex  key={users.id}>
             <h1>Title: {users.profile_title}</h1>
             <h2>Tagline: {users.tagline}</h2>
             <p>Guide specialty: {users.guide_specialty}</p>
@@ -46,7 +55,7 @@ const PrivateProfile = (props) => {
             <p>Trip Duration: {users.duration}</p>
             <p>Trip Distance: {users.distance}</p>
             <p>Trip Date: {users.date}</p>
-          </div>
+          </Flex>
           )
           
         })}     
