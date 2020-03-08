@@ -20,7 +20,9 @@ justify-content:center;
 background:linear-gradient(to bottom, #747185 , #B7AAB3);
 border-radius:10px;
 `
-
+const Prof = styled.div`
+border-bottom: black 2px solid;
+`
 // should display private profile to edit
 const PrivateProfile = (props) => {
 
@@ -29,13 +31,23 @@ const PrivateProfile = (props) => {
   console.log(id);
 
   const [user, setUser] = useState([{}]);
+  const [profilee,setProfile] = useState(['']);
+  const [tagline,setTagline] = useState(['']);
+  const [guideSpecialty,setSpecialty] = useState(['']);
+  const [age,setAge] = useState(['']);
+  const [experience,setExperience] = useState(['']);
 
   useEffect(()=>{
     axiosWithAuth()
     .get(`https://guidr1.herokuapp.com/api/users/data/${id}`)
     .then(res =>{
-      console.log(res.data);
+      console.log(res.data[0]);
       setUser(res.data);
+      setProfile(res.data[0].profile_title)
+      setTagline(res.data[0].tagline)
+      setSpecialty(res.data[0].guide_specialty)
+      setAge(res.data[0].age)
+      setExperience(res.data[0].years_experience)
       
     })
     .catch(error => console.log(error));
@@ -44,36 +56,42 @@ const PrivateProfile = (props) => {
 
   
   console.log(user);
+  console.log(profilee);
   
   return (
-    <div>
+    <Flex>
+     <Prof>
+       <h1>{profilee}</h1>
+       <h2>{tagline}</h2>
+       <p>Guide specialty: {guideSpecialty}</p>
+       <p>age: {age}</p>
+       <p>Years experience: {experience}</p> 
+       </Prof>
+           
+           
+         
+            
+
+<h1>Trips!</h1>
         {user.map(users=>{
 
           return(
-          <Flex  >
+          <div>
            
-            <h1>{users.profile_title}</h1>
-            <div>
-            <h2>Tagline</h2>
-            <p>{users.tagline}</p>
-            </div>
-            <p>Guide specialty: {users.guide_specialty}</p>
-            <p>age: {users.age}</p>
-            <p>Years experience: {users.years_experience}</p>
+           
             <Trip>
-              <h2>Trips!</h2>
-          <p> {users.trips_title}</p>
+          <h2> {users.trips_title}</h2>
           <p>Trip Description: {users.description}</p>
             <p>Trip Duration: {users.duration}</p>
             <p>Trip Distance: {users.distance}</p>
             <p>Trip Date: {users.date}</p>
             </Trip>
-          </Flex>
+          </div>
           )
           
         })}     
       <Link to = '/edits'><button>Edit Profile</button></Link>
-    </div>
+    </Flex>
   );
 };
 
