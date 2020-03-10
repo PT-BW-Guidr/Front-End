@@ -17,7 +17,8 @@ import register from './Components/register';
 
 
 const Nav =styled.div`
-background: lightblue;
+
+
 padding:10px;
 `
 

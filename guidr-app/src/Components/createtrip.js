@@ -9,16 +9,15 @@ const Flex= styled.div`
 display: flex;
 flex-flow: column wrap;
 justify-content: center;
-margin: 1% 35%;
+margin: 2% 22%;
+padding:20px;
+background:linear-gradient(to bottom, #747185 , #B7AAB3);
 `
 const CreateTrip = props => {
 
     const [newTrip, setNewTrip] = useState(props.trip);
 
     const [id, setId] = useState(props.user.userid);
-
-
-
 
       const handleChanges = event => {
        
@@ -52,9 +51,11 @@ const CreateTrip = props => {
 
   return (
   <div>
-    <h1>your trip here</h1>
+    
     <form onSubmit={submitForm}>
+      
         <Flex>
+        <h2>your trip here</h2>
 <label htmlFor="title">Trip Title</label>
       <input
         type="text"

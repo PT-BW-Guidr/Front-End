@@ -1,11 +1,12 @@
 body {
-  width:85%;
+  width:80%;
   margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://images.unsplash.com/photo-1450387635522-8ecb968079bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2122&q=80f");
 }
 
 code {
@@ -17,18 +18,45 @@ code {
 nav {
   display: flex;
   justify-content: space-evenly;
-  
+  padding: 10px;
+  border-bottom: black 2px solid;
 }
 
 a{
   text-decoration: none;
   color:black;
+ 
+}
+label {
+  padding:8px 0;
+  margin: 8px 4px;
+
+  
 }
 
 h1 {
+  font-size: 50px;
+  text-align: center;
+  text-shadow: 1px 1px 2px lightblue;
+}
+h2 {
   text-align: center;
 }
 
-input {
-  margin:5px 0;
+img {
+  width: 100%;
+}
+
+button{
+  margin:20px 10px;
+  background-color:#E07B4A;
+  border:none;
+  padding:10px;
+  border-radius: 10px;
+  width:50%;
+  align-self: center;
+}
+
+div{
+  border-radius: 10px;
 }

@@ -1,9 +1,22 @@
 import React, {useState} from 'react';
-
 import {connect} from 'react-redux';
 import {getLogin, getCred, createUser} from '../Reducer/Actions'
-
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
+
+const Flex= styled.div`
+display: flex;
+flex-flow: column wrap;
+justify-content: center;
+align-content:space evenly;
+margin: 2% 22%;
+padding:20px;
+background:linear-gradient(to bottom, #747185 , #B7AAB3);
+`
+
+const Inputs = styled.div`
+margin-bottom:10px;
+`
 
 const Register = props =>{
 
@@ -28,25 +41,35 @@ const Register = props =>{
 
 
     return(
-        <div  className = 'Register'>
-            <h1>Sign Up Here!</h1>
+        <Flex>
+            
+            
             <form onSubmit={onsSubmit}>
+            <h2>Sign Up Here!</h2>
+            <Inputs>
+            <div>
+            <label htmlFor="username">enter username</label>
                 <input
                 type = 'text'
                 name = 'username'
                 onChange = {handleChange}
                 placeholder ={props.user.username}
                 />
+                </div>
+                </Inputs>
+                <div>
+                <label htmlFor="username">enter password </label>
                 <input
-                type = 'text'
+                type = 'password'
                 name = 'password'
                 onChange ={handleChange}
                 placeholder = {props.user.password}
                 />
+                </div>
                 <button type = "submit" >Sign up</button>
             </form>
             <Link to = "/login">Already a user? Sign in Here!</Link>
-        </div>
+        </Flex>
     )
 }
 const mapStateToProps = state =>{

@@ -1,3 +1,4 @@
+ 
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import PublicProfile from "./publicprofile";
@@ -15,6 +16,7 @@ display: flex;
 flex-flow: row wrap;
 justify-content: space-evenly;
 margin: 5% 0;
+
 `
 
 const PublicProfilePage = props => {
@@ -40,7 +42,7 @@ const PublicProfilePage = props => {
  
   return (    
     <div>
-      <h1>Our wonderfull guides!</h1>
+      <h2>Our wonderfull guides!</h2>
       <Flex>
       {memberData.map(item => {
           
@@ -71,4 +73,3 @@ export default connect(
   mapStateToProps,
   {}
 ) (PublicProfilePage);
-
